@@ -4,7 +4,7 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.render('index', { body: 'This is LetsGit' });
 };
 
 exports.gitPull = function(req, res) {
