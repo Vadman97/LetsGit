@@ -4,7 +4,7 @@ exports.addRoutes = function(app) {
 		console.log("Pulling...")
 		run_cmd("git pull origin master");
 		console.log("Pulled!");
-		res.send("Pulled!", 400);
+		res.send("Pulled!", 200);
 	});
 
 	app.get('/git_pull', function(req, res){
