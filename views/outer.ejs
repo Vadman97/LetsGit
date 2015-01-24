@@ -7,13 +7,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>LetsGit</title>
+    <title><%= typeof title == 'undefined' ? '' : (title + ' | ') %>LetsGit</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/stylesheets/navbar.css" rel="stylesheet">
+
+    <% if(typeof css != 'undefined') {
+        for(i in css) { %>
+          <link href="/stylesheets/<%= css[i] %>.css" rel="stylesheet">
+        <% }
+      } %>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -68,5 +74,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/ie10-viewport-bug-workaround.js"></script>
+    <% if(typeof js != 'undefined') {
+        for(i in js) { %>
+          <script src="/js/<%= js[i] %>.js"></script>
+        <% }
+      } %>
   </body>
 </html>
