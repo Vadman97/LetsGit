@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
+require('./common');
 
-app.get('/', function(req, res) {
-  // todo render file page
-});
+exports.addRoutes = function(app) {
+  app.get('/file', function(req, res){
+    render('file', {}, res);
+  });
+};

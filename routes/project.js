@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
+require('./common');
 
-app.get('/', function(req, res) {
-  // todo render project page
-});
+exports.addRoutes = function(app) {
+  app.get('/project', function(req, res){
+    render('project', {}, res);
+  });
+};

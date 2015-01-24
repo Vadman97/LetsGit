@@ -9,6 +9,8 @@ var express = require('express');
 
 var index = require('./routes/index');
 var git_pull = require('./routes/gitPull');
+var project = require('./routes/project');
+var file = require('./routes/file');
 
 var app = express();
 
@@ -31,6 +33,8 @@ if ('development' == app.get('env')) {
 
 index.addRoutes(app);
 git_pull.addRoutes(app);
+project.addRoutes(app);
+file.addRoutes(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
