@@ -8,7 +8,7 @@ exports.addRoutes = function(app) {
 	});
 
 	app.get('/git_pull', function(req, res){
-		res.send("Can't pull from GET request!");
+		res.send("HEY YOU! Can't pull from GET request!");
 	})
 };
 
