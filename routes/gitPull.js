@@ -1,13 +1,16 @@
-var express = require('express');
-var router = express.Router();
+exports.addRoutes = function(app) {
+	//Auto updating server to new git push
+	app.post('/git_pull', function(req, res) {
+		console.log("Pulling...")
+		run_cmd("git pull origin master");
+		console.log("Pulled!");
+		res.send("Pulled!", 400);
+	});
 
-//Git auto pull on push
-router.post('/', function(req, res) {
-	console.log("Pulling...")
-	run_cmd("git pull origin master");
-	console.log("Pulled!");
-	res.send("Pulled!", 400);
-});
+	app.get('/git_pull', function(req, res){
+		res.send("Can't pull from GET request!");
+	})
+};
 
 function run_cmd(cmd) {
     var sys = require('sys')

@@ -3,14 +3,12 @@
  * Module dependencies.
  */
 
-//Core
 var http = require('http');
 var path = require('path');
-//npm
 var express = require('express');
-//Custom
+
 var index = require('./routes/index');
-var git_pull = require('./routes/gitPull')
+var git_pull = require('./routes/gitPull');
 
 var app = express();
 
@@ -31,8 +29,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.use('/', index);
-app.use('/git_pull', gitPull);
+index.addRoutes(app);
+git_pull.addRoutes(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
