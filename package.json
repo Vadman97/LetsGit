@@ -25,6 +25,7 @@
     "passport": "~0.2.1",
     "passport-local": "~1.0.0",
     "promisify-node": "^0.1.5",
+    "strftime": "^0.8.2",
     "unzip": "^0.1.11",
     "validator": "^3.28.0"
   }

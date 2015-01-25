@@ -1,5 +1,6 @@
 var Repo = require('../models/repo.js');
 require('./common');
+var strftime = require('strftime');
 
 exports.addRoutes = function(app) {
 	app.get('/dashboard', ensureAuthenticated, function(req, res)
@@ -26,6 +27,11 @@ exports.addRoutes = function(app) {
 
 		Repo.find({userId: req.user._id}, function(error, data){
 	    	//console.log(data);
+	    	for(i in data) {
+	    		console.log(data[i].updatedAt);
+	    		data[i].updatedAtt = strftime('%b %e, %Y at %l:%M', data[i].updatedAt);
+	    		console.log(data[i].updatedAtt);
+	    	}
 			renderDashboard('dashboard', {css:["dashboard"], js:['dashboard'], repos:data}, res);
 	    });
 		//console.log(req.user);
