@@ -28,8 +28,8 @@ exports.addRoutes = function(app) {
 			  	.done(function() {
 			  		//post to s3
 				var testRepo = new Repo({
-					name: 'test' + i, 
-					path: 'www.google.com/' + Math.random(), 
+					name: repoName, 
+					path: pathName, 
 					createdAt: new Date().toJSON(),
 					updatedAt: new Date().toJSON(),
 					userId: req.user._id
