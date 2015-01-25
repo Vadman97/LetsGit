@@ -65,6 +65,11 @@ exports.addRoutes = function(app) {
       var repoName = data.name;
       console.log("DEEP PATH STRING: " + pathString);
       fs.stat(pathString, function(err, stats) {
+        if(err) 
+    	{
+    		console.log(err);
+    		throw err;
+    	}
         if(stats.isDirectory()) {
 
         	fs.readdir(pathString, function(error, files)
