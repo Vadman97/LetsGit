@@ -7,7 +7,7 @@ var fse = promisify(require("fs-extra"));
 var fs = require('fs');
 var path = require('path');
 var EasyZip = require('easy-zip').EasyZip;
-var unzip = require('unzip');
+var AdmZip = require('adm-zip');
 var multer  = require('multer');
 var done = false;
 
@@ -59,9 +59,11 @@ exports.addRoutes = function(app) {
 	 //    });
 		var filePath = path.resolve(__dirname + "/../" + file.path);
 		console.log("FILE PATH:" + filePath);
-		var outputPath = path.resolve(__dirname + "/../repos/yolo");
+		var outputPath = path.resolve(__dirname + "/../extracted");
 		console.log("SAVE PATH:" + outputPath);
 
+		var zip = new AdmZip(filePath);
+		zip.extractAllTo(outputPath, true);
 		// var readStream = fs.createReadStream(filePath);
 		// var writeStream = fs.createWriteStream(outputPath);
 
@@ -69,14 +71,18 @@ exports.addRoutes = function(app) {
 		//   .pipe(unzip.Parse())
 		//   .pipe(writeStream)
 
-		fs.createReadStream(filePath).pipe(unzip.Extract({ path: outputPath}));
+		// fs.createReadStream(filePath).pipe(unzip.Extract({ path: outputPath}));
 
-		// pipe(unzip.Parse())
-	 //  	.on('entry', function (entry) {
+		// fs.createReadStream(filePath).pipe(unzip.Parse())
+	 //  	.on('entry', function (entry, error) {
+	 //  		if (error) {
+	 //  			console.log(error);
+	 //  		};
 	 //   		var fileName = entry.path;
 	 //   		console.log("FILE NAME IS:" + fileName);
-	 //    	var type = entry.type; // 'Directory' or 'File'
-	 //    	var size = entry.size;
+	 //   		entry.autodrain();
+	    	// var type = entry.type; // 'Directory' or 'File'
+	    	// var size = entry.size;
 	    	// if (fileName === "this IS the file I'm looking for") {
 	     //  		entry.pipe(fs.createWriteStream('output/path'));
 		    // } else {
