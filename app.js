@@ -18,6 +18,7 @@ var project = require('./routes/project');
 var file = require('./routes/file');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
+var dashboard = require('./routes/dashboard');
 
 var app = express();
 var s3 = new AWS.S3();
@@ -77,6 +78,7 @@ project.addRoutes(app);
 file.addRoutes(app);
 login.addRoutes(app);
 signup.addRoutes(app);
+dashboard.addRoutes(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
