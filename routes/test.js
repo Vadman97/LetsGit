@@ -16,7 +16,7 @@ exports.addRoutes = function(app) {
 		{
 			var testRepo = new Repo({
 				name: 'test' + i, 
-				path: 'www.google.com/' + Math.random(), 
+				path: '/repos/'+ req.user._id + '/test' + i + '/', 
 				createdAt: new Date().toJSON(),
 				updatedAt: new Date().toJSON(),
 				userId: req.user._id

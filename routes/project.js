@@ -1,15 +1,22 @@
 require('./common');
 var Repo = require('../models/repo.js');
+var fs = require('fs');
 
 exports.addRoutes = function(app) {
   app.get('/project/:id', ensureAuthenticated, function(req, res){
   	Repo.findOne({_id: req.param("id")}, function(error, data){
-  		if (error)
+  		if (error || data == null)//user doesnt have repo
   			res.redirect("/dashboard");
-  		console.log(data);
-		renderDashboard('project', {css:["dashboard"], project: data, files: null}, res);
+  		var pathString = "./repos";
+  		fs.readdir(pathString, function(error, files){
+  			console.log("Printing project backend stuff");
+  			console.log(pathString);
+  			console.log(files);
+			renderDashboard('project', {css:["dashboard"], project: data, files: null}, res);
+  		});
     });
   });
+  //todo with subfolder
 };
 
 function ensureAuthenticated(req, res, next) {
