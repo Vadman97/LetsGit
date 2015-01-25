@@ -7,6 +7,7 @@ var http = require('http');
 var path = require('path');
 var express = require('express');
 var passport = require('passport');
+var AWS = require('aws-sdk'); 
 
 var index = require('./routes/index');
 var git_pull = require('./routes/gitPull');
@@ -16,6 +17,7 @@ var login = require('./routes/login');
 var git = require('./routes/git')
 
 var app = express();
+var s3 = new AWS.S3();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
