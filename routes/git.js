@@ -32,15 +32,12 @@ exports.addRoutes = function(app) {
 				pathName, {ignoreCertErrors: 1})
 			  	.done(function() {
 					var testRepo = new Repo({
-					name: 'test' + i, 
-					path: 'www.google.com/' + Math.random(), 
-				var testRepo = new Repo({
-					name: repoName, 
-					path: pathName, 
-					createdAt: new Date().toJSON(),
-					updatedAt: new Date().toJSON(),
-					userId: req.user._id
-				});
+						name: repoName, 
+						path: pathName, 
+						createdAt: new Date().toJSON(),
+						updatedAt: new Date().toJSON(),
+						userId: req.user._id
+					});
 				testRepo.save();
 				res.json({repoURL: pathName});
 			});					   
