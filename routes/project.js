@@ -26,7 +26,7 @@ exports.addRoutes = function(app) {
           if (files[i].indexOf('.') == 0)
           {
             console.log(i);
-            files.splice(i, 10);
+            files.splice(i, 2);
           }
 
           var stats = fs.statSync(pathString + files[i]);
@@ -65,7 +65,19 @@ exports.addRoutes = function(app) {
             if(pathString.charAt(pathString.length-1) != '/') pathString = pathString + '/';
             console.log(pathString);
             //for now, project figures out if directory or file when requesting
-            for (i in files) {
+            for (var i = 0; i < files.length; i++) 
+            {
+              //pass to ejs file names
+              //no slash at the end of the pathString actually
+              //console.log(i);
+              //console.log(files[i]);
+              //console.log(files[i]);
+              //console.log(files[i].indexOf('.'));
+              if (files[i].indexOf('.') == 0)
+              {
+                console.log(i);
+                files.splice(i, 2);
+              }
               //pass to ejs file names
               //no slash at the end of the pathString actually
               var stats = fs.statSync(pathString + files[i]);
