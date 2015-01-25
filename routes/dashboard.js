@@ -12,12 +12,23 @@ exports.addRoutes = function(app) {
 			userId: req.user._id
 		});
 		testRepo.save();*/
+		/*for (var i = 0; i < 6; i++)
+		{
+			var testRepo = new Repo({
+				name: 'test' + i, 
+				path: 'www.google.com/' + Math.random(), 
+				createdAt: new Date().toJSON(),
+				updatedAt: new Date().toJSON(),
+				userId: req.user._id
+			});
+			testRepo.save();
+		}*/
 
 		Repo.find({userId: req.user._id}, function(error, data){
-	    	console.log(data);
+	    	//console.log(data);
 			renderDashboard('dashboard', {css:["dashboard"], repos:data}, res);
 	    });
-		console.log(req.user);
+		//console.log(req.user);
 	});
 };
 

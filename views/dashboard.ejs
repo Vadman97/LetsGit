@@ -12,7 +12,7 @@
 					</a>
 				</div>
 				<div class="row">
-					<a href="/createRepo" class="btn btn-primary">
+					<a href="#" data-toggle="modal" data-target="#createRepository" class="btn btn-primary">
 						<span class="glyphicon glyphicon-file"></span>
 		                Create a new repository
 					</a>
@@ -66,7 +66,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3 class="modal-title" id="myModalLabel2">Add a repository with its URL</h3>
+				<h3 class="modal-title">Add a repository with its URL</h3>
 			</div>
 			<div class="modal-body">      
 				<div class="container-fluid">
@@ -74,7 +74,7 @@
 						<fieldset>
 							<div class="form-group">
                                 <label for="url">Repository URL:</label><br>
-                                <input type="text" class="form-control" name="url" placeholder="URL" maxlength=100 required></textarea>
+                                <input type="text" class="form-control" name="url" id="url" placeholder="URL" maxlength=100 required></textarea>
                                 <input id="upload-submit" class="btn btn-default" type="submit" value="Submit"> 
 								<!-- <div class="row">
 									<div class="col-md-2">
@@ -89,6 +89,35 @@
 	                                	<input id="upload-submit" class="btn btn-success" type="submit" value="Submit">
 	                                </div>
                                 </div> -->
+                            </div>
+						</fieldset>
+					</form>
+				</div>                
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal fade -->
+
+<div class="modal fade" id="createRepository" tabindex="-1" role="dialog">
+	<div class="modal-dialog modalBodySized">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 class="modal-title">Create (and initialize) a new repository</h3>
+			</div>
+			<div class="modal-body">      
+				<div class="container-fluid">
+					<form method="post" role="form" id="createRepositoryForm" enctype="application/x-www-form-urlencoded" action="/initRepo" autocomplete="off">
+						<fieldset>
+							<div class="form-group">
+								<label for="repoName">Repository Name:</label><br>
+								<input type="text" class="form-control" name="repoName" id="repoName" placeholder="Repo Name" maxlenth=100 required></input>
+                                <label for="url">Repository Remote URL:</label><br>
+                                <input type="text" class="form-control" name="url" id="url" placeholder="URL" maxlength=100 required></textarea>
+                                <input id="upload-submit" class="btn btn-default" type="submit" value="Submit"> 
                             </div>
 						</fieldset>
 					</form>
