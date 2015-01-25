@@ -4,11 +4,15 @@ var readOnly = true;
 setReadOnly(readOnly);
 
 editor.setTheme("ace/theme/clouds");
-editor.getSession().setMode("ace/mode/javascript");
 editor.setAutoScrollEditorIntoView(true);
 editor.setOption("maxLines", 50);
 editor.setOption("minLines", 2);
 editor.setShowPrintMargin(false);
+
+// set mode
+var modelist = ace.require('ace/ext/modelist');
+var mode = modelist.getModeForPath(document.URL).mode;
+editor.session.setMode(mode);
 
 // val=true to set read only, val=false for write mode
 function setReadOnly(val) {

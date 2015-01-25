@@ -50,7 +50,7 @@ exports.addRoutes = function(app) {
         } else {
           fs.readFile(pathString, function(err, text){
             if (err) throw err;
-            renderDashboard('file', { js: ['ace/ace', 'file'], data:text, project: data}, res);
+            renderDashboard('file', { js: ['ace/ace', 'ace/ext-modelist', 'file'], data:text, project: data}, res);
           });
         }
       });
