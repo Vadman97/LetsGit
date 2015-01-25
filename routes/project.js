@@ -38,7 +38,7 @@ exports.addRoutes = function(app) {
   			//console.log("Printing project backend stuff");
   			//console.log(pathString);
   			//console.log(files);
-  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id"), repoName: repoName, parent: false}, res);
+  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id") + '/', repoName: repoName, parent: false}, res);
   		});
     });
   });
@@ -65,7 +65,7 @@ exports.addRoutes = function(app) {
               //pass to ejs file names
               //no slash at the end of the pathString actually
               var stats = fs.statSync(pathString + files[i]);
-              if (stats.isDirectory()) {
+              if (stats.isDirectory() && files[i].charAt(files[i].length-1) != '/') {
                 files[i] = files[i] + '/'; // make the ejs display folders vs files differently
               }
               files[i].stats = stats;
