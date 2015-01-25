@@ -8,6 +8,7 @@ exports.addRoutes = function(app) {
   		if (error || data == null || !req.param("id"))//user doesnt have repo
   			res.redirect("/dashboard");
   		var pathString = data.path;
+      var repoName = data.name;
   		fs.readdir(pathString, function(error, files)
   		{
   			//for now, project figures out if directory or file when requesting
@@ -25,7 +26,7 @@ exports.addRoutes = function(app) {
   			//console.log("Printing project backend stuff");
   			//console.log(pathString);
   			//console.log(files);
-			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id"), parent: false}, res);
+			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id"), repoName: repoName, parent: false}, res);
   		});
     });
   });

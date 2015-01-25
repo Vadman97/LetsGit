@@ -50,17 +50,21 @@ exports.addRoutes = function(app) {
 
 	});
 
-	app.post('/uploadrepo', function(req, res) {
+	app.post('/uploadrepo/:repoName', function(req, res) {
 		var file = req.files.file;
+		var repoName = req.params.repoName;
+
 		console.log(file);
-		
+
 		var filePath = path.resolve(__dirname + "/../" + file.path);
 		console.log("FILE PATH:" + filePath);
-		var outputPath = path.resolve(__dirname + "/../extracted");
+		var outputPath = path.resolve(__dirname + "/../repos/" + req.user._id + "/" + repoName);
 		console.log("SAVE PATH:" + outputPath);
-
-		var zip = new AdmZip(filePath);
-		zip.extractAllTo(outputPath, true);
+		
+		fse.remove(outputPath).then(function() {
+			var zip = new AdmZip(filePath);
+			zip.extractAllTo(outputPath, true);
+		});
 	});
 
 	app.get('/download/:repoName', function(req, res) {
