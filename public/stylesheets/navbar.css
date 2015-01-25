@@ -6,3 +6,8 @@ body {
 .navbar {
   margin-bottom: 20px;
 }
+
+.breadcrumbs {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
