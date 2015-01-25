@@ -19,7 +19,6 @@ var creds = require('./routes/creds');
 var index = require('./routes/index');
 var git_pull = require('./routes/gitPull');
 var project = require('./routes/project');
-var file = require('./routes/file');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
 var dashboard = require('./routes/dashboard');
@@ -70,6 +69,16 @@ app.use(bodyParser.urlencoded({
 app.use(session({secret: creds.session_secret}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function (req, res, next) {
+  if (req.method == 'POST' && req.url == '/login' ) {
+    if ( req.body.rememberme ) {
+      req.session.cookie.maxAge = 2592000000; // 30*24*60*60*1000 Rememeber 'me' for 30 days
+    } else {
+      req.session.cookie.expires = false;
+    }
+  }
+  next();
+});
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -86,7 +95,6 @@ if ('development' == app.get('env')) {
 index.addRoutes(app);
 git_pull.addRoutes(app);
 project.addRoutes(app);
-file.addRoutes(app);
 login.addRoutes(app);
 signup.addRoutes(app);
 dashboard.addRoutes(app);

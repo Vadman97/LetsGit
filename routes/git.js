@@ -17,7 +17,7 @@ exports.addRoutes = function(app) {
 	app.post('/clone', function(req, res) {
 		var repoURL = req.body.url;
 		var repoName = path.basename(repoURL, '.git');
-		var pathName = __dirname + "/../repos/" + req.user._id + "/" + repoName;		
+		var pathName = "./repos/" + req.user._id + "/" + repoName;		
 					
 		fse.remove(pathName).then(function() {
 			var entry;
@@ -30,6 +30,9 @@ exports.addRoutes = function(app) {
 					var testRepo = new Repo({
 					name: 'test' + i, 
 					path: 'www.google.com/' + Math.random(), 
+				var testRepo = new Repo({
+					name: repoName, 
+					path: pathName, 
 					createdAt: new Date().toJSON(),
 					updatedAt: new Date().toJSON(),
 					userId: req.user._id
