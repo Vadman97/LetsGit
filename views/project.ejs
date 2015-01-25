@@ -1,5 +1,5 @@
 <h2>
-  <%= project.name %>
+  <%= project.name %><span class="fa fa-<%= project.changed ? 'exclamation-triangle' : 'check' %> fa-lg" data-toggle="tooltip" data-placement="left" title="<%= project.changed ? 'You have unsynced changes.' : 'All changes have been synced.' %>"></span>
 </h2>
 <%
   var folders = currentPath.split('/');
