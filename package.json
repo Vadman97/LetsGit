@@ -10,6 +10,7 @@
     "bcrypt": "~0.8.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.10.2",
+    "connect-mongo": "^0.7.0",
     "ejs": "*",
     "express": "3.4.8",
     "express-session": "^1.10.1",
