@@ -1,75 +1,8 @@
-<div class="row">
-    <div class="col-md-6">
-        <form action="/signup" class="form-horizontal" method="post">
-            <fieldset>
-                <div id="legend">
-                    <legend class="">Register</legend>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label" for=
-                    "username">Username</label>
-
-                    <div class="controls">
-                        <input class="form-control input-lg" id=
-                        "username" name="username" placeholder="" type=
-                        "text">
-
-                        <p class="help-block">Username can contain any
-                        letters or numbers, without spaces</p>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label" for=
-                    "email">E-mail</label>
-
-                    <div class="controls">
-                        <input class="form-control input-lg" id="email"
-                        name="email" placeholder="" type="email" name="email">
-
-                        <p class="help-block">Please provide your
-                        E-mail</p>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label" for=
-                    "password">Password</label>
-
-                    <div class="controls">
-                        <input class="form-control input-lg" id=
-                        "password" name="password" placeholder="" type=
-                        "password" name="password">
-
-                        <p class="help-block">Password should be at
-                        least 6 characters</p>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label" for=
-                    "password_confirm">Password (Confirm)</label>
-
-                    <div class="controls">
-                        <input class="form-control input-lg" id=
-                        "password_confirm" name="password_confirm"
-                        placeholder="" type="password">
-
-                        <p class="help-block">Please confirm
-                        password</p>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <!-- Button -->
-
-                    <div class="controls">
-                        <button class=
-                        "btn btn-success">Register</button>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-</div>
+<form class="form-signin" action="/signup" method="post">
+    <h1 class="form-signin-heading text-muted">Register</h1>
+    <input autofocus="" class="form-control" placeholder="Username" required="" type="text" name="username">
+    <input class="form-control" placeholder="Email address" required="" type="text" name="email">
+    <input class="form-control" placeholder="Password" required="" type="password" name="password">
+    <input class="form-control" placeholder="Confirm Password" required="" type="password" name="password_confirm">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+</form>
