@@ -21,6 +21,7 @@ exports.addRoutes = function(app) {
 				updatedAt: new Date().toJSON(),
 				userId: req.user._id
 			});
+			console.log(testRepo);
 			testRepo.save();
 		}
 		res.redirect('/')
