@@ -7,7 +7,7 @@ exports.addRoutes = function(app) {
   		if (error)
   			res.redirect("/dashboard");
   		console.log(data);
-		renderDashboard('project', {css:["dashboard"], project: data}, res);
+		renderDashboard('project', {css:["dashboard"], project: data, files: null}, res);
     });
   });
 };

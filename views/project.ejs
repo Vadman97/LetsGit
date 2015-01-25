@@ -21,15 +21,17 @@
         <tr>
           <td colspan="4"><a href="#"><span class="fa fa-level-up">&nbsp;</span>Parent</a></td>
         </tr>
-        <tr>
-          <td><a href="#">Example_file.js</a></td>
-          <td>ipsum</td>
-          <td>dolor</td>
-          <td>
-            <a href="#" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Rename"><span class="fa fa-pencil fa-lg"></span></a>
-            <a href="#" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><span class="fa fa-trash-o fa-lg"></span></a>
-          </td>
-        </tr>
+        <% for (index in files) { %>
+          <tr>
+            <td><a href="#">Example_file.js</a></td>
+            <td>ipsum</td>
+            <td>dolor</td>
+            <td>
+              <a href="#" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Rename"><span class="fa fa-pencil fa-lg"></span></a>
+              <a href="#" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><span class="fa fa-trash-o fa-lg"></span></a>
+            </td>
+          </tr>
+        <% } %>
         <tr>
           <td><a href="#">Example_folder/</a></td>
           <td>consectetur</td>
