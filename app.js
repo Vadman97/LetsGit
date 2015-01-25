@@ -30,6 +30,7 @@ var test = require('./routes/test');
 var repoDel = require('./routes/repoDel');
 var fileEdit = require('./routes/fileEdit');
 var commit = require('./routes/commit');
+var push = require('./routes/push');
 
 var app = express();
 var s3 = new AWS.S3();
@@ -111,6 +112,7 @@ test.addRoutes(app);
 repoDel.addRoutes(app);
 fileEdit.addRoutes(app);
 commit.addRoutes(app);
+push.addRoutes(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
