@@ -59,9 +59,10 @@
       </form>
     </label>
     <a href="/download/<%= project.name %>" class="fa fa-download fa-2x addButton3" data-toggle="tooltip" data-placement="bottom" title="Download files"></a>
-    <a href="/commitRepo" class="fa fa-file fa-2x addButton3" data-toggle="tooltip" data-placement="bottom" title="Create new file"></a>
-    <a href="" class="fa fa-check fa-2x addButton3" data-toggle="tooltip" data-placement="bottom" title="Commit"></a>
-    <a href="" class="fa fa-refresh fa-2x addButton3" data-toggle="tooltip" data-placement="bottom" title="Push"></a>    
+    <a href="/createFile" class="fa fa-file fa-2x addButton3" data-toggle="tooltip" data-placement="bottom" title="Create new file"></a>
+    <a href="/commitRepo/<%= project._id %>" class="fa fa-check fa-2x addButton3" data-toggle="tooltip" data-placement="bottom" title="Commit"></a>
+    <a href="" class="fa fa-refresh fa-2x addButton3" data-toggle="tooltip" data-placement="bottom" title="Push"></a>
+
   </div>
 </div>
 
