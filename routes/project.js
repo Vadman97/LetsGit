@@ -124,7 +124,7 @@ exports.addRoutes = function(app) {
         } else {
           fs.readFile(pathString, function(err, text){
             if (err) throw err;
-            renderDashboard('file', { js: ['ace/ace', 'ace/ext-modelist', 'file', 'project', 'projectButtons'], data:text, project: data, currentPath: "/project/" + req.param("id") + '/' + req.params[0]}, res);
+            renderDashboard('file', { js: ['ace/ace', 'ace/ext-modelist', 'file', 'project', 'projectButtons'], data:text, project: data, currentPath: "/project/" + req.param("id") + '/' + req.params[0], user: req.user, path: req.params[0]}, res);
           });
         }
       });
