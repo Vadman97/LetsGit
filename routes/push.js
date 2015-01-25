@@ -11,6 +11,7 @@ exports.addRoutes = function(app) {
       .then(function(repository) {
   return nodegit.Remote.load(repository, "origin")
     .then(function(remote) {
+      console.log(remote);
       remote.connect(nodegit.Enums.DIRECTION.PUSH);
 
       var push;
