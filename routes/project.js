@@ -59,6 +59,7 @@ exports.addRoutes = function(app) {
       var repoName = data.name;
       console.log("DEEP PATH STRING: " + pathString);
       fs.stat(pathString, function(err, stats) {
+        if(err) throw err;
         if(stats.isDirectory()) {
 
         	fs.readdir(pathString, function(error, files)
@@ -85,7 +86,7 @@ exports.addRoutes = function(app) {
 	  			//console.log("Printing project backend stuff");
 	  			//console.log(pathString);
 	  			//console.log(files);
-	  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: goodFiles, currentPath: "/project/" + req.param("id"), repoName: repoName, parent: false}, res);
+	  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: goodFiles, currentPath: "/project/" + req.param("id") + '/' + req.params[0], repoName: repoName, parent: false}, res);
 	  		});
 
          	/*fs.readdir(pathString, function(error, files) {
