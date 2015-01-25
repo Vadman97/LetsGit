@@ -1,23 +1,17 @@
 <div class="jumbotron">
 	<div class="container dashboardContainer">
 		<div class="row title">
-			<div class="col-md-9">
-				<h1>Your cloned repositories</h1>
-			</div>
-			<div class="col-md-3">
-				<div class="row">
-					<a href="#" data-toggle="modal" data-target="#addRepository" class="btn btn-primary addButton">
-						<span class="glyphicon glyphicon-plus"></span>
-		                Add a new repository (Clone)
-					</a>
-				</div>
-				<div class="row">
-					<a href="#" data-toggle="modal" data-target="#createRepository" class="btn btn-primary">
-						<span class="glyphicon glyphicon-file"></span>
-		                Create a new repository
-					</a>
-				</div>
-			</div>
+			<h1>Your cloned repositories</h1>
+			<span data-toggle="tooltip" data-placement="top" title="Create a new repository">
+				<a href="#" data-toggle="modal" data-target="#createRepository">
+					<span class="fa fa-file fa-2x"></span>
+				</a>
+			</span>
+			<span data-toggle="tooltip" data-placement="top" title="Add a new repository (Clone)">
+				<a href="#" data-toggle="modal" data-target="#addRepository">
+					<span class="fa fa-plus fa-2x"></span>
+				</a>
+			</span>
 		</div>
 		<div class="table-responsive well">
 			<table class="table table-striped table-hover repoTable">
@@ -46,21 +40,17 @@
 		</div>
 
 		<div class="row">
-			<a href="/downloadRepo" class="btn btn-primary addButton">
-				<span class="glyphicon glyphicon-download"></span>
-	            Download repository
+			<a href="/downloadRepo" class="addButton">
+				<span class="fa fa-download fa-2x" data-toggle="tooltip" data-placement="bottom" title="Download repository"></span>
 			</a>
-			<a href="/uploadRepo" class="btn btn-primary addButton">
-				<span class="glyphicon glyphicon-upload"></span>
-	            Upload repository
+			<a href="/uploadRepo" class="addButton">
+				<span class="fa fa-upload fa-2x" data-toggle="tooltip" data-placement="bottom" title="Upload repository"></span>
 			</a>
-			<a href="/commitRepo" class="btn btn-success addButton">
-				<span class="glyphicon glyphicon-ok"></span>
-	            Commit your changes
+			<a href="/commitRepo" class="addButton">
+				<span class="fa fa-check fa-2x" data-toggle="tooltip" data-placement="bottom" title="Commit your changes"></span>
 			</a>
-			<a href="/pushRepo" class="btn btn-warning addButton">
-				<span class="glyphicon glyphicon-refresh"></span>
-	            Submit (push) your changes
+			<a href="/pushRepo" class="addButton">
+				<span class="fa fa-refresh fa-2x" data-toggle="tooltip" data-placement="bottom" title="Submit (push) your changes"></span>
 			</a>
 		</div>
 	</div>
