@@ -1,9 +1,11 @@
 $(document).ready(function() {
   $('#uploadZip').on('submit', function(e) {
-    $.post('/uploadRepo', new FormData(this), function(data, status){
-      //Success handler
-      console.log("submited!");
-    });
+    var formData = new FormData();
+    formData.append("file", $('#uploadInput')[0].files[0]);
+
+    var request = new XMLHttpRequest();
+    request.open("POST", '/uploadRepo');
+    request.send(formData);
     e.preventDefault();
   });
 });

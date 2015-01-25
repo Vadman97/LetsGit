@@ -53,7 +53,7 @@ exports.addRoutes = function(app) {
         'Content-Type': 'text/plain',
         'Access-Control-Allow-Origin': '*' // implementation of CORS
 	    });
-	    var fileName = req.body.fileName;
+	    var fileName = req.body.file;
 	    fileName = fileName.split('/').lastChild;
 	    console.log(fileName);
 	    req.on('data', function (chunk) {
