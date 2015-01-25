@@ -36,7 +36,7 @@ exports.addRoutes = function(app) {
 			  	.done(function() {
 			  		//post to s3
 
-				res.json({message: "test"});
+				res.json({repoURL: pathName});
 			});					   
 		});
 	});
