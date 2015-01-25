@@ -9,11 +9,11 @@ body {
 
 .jumbotron {
   padding: 0 !important;
-  
+  padding-bottom: 14px !important;
 }
 
 .breadcrumbs {
-  padding: 24px 60px !important;
+  padding: 14px 60px !important;
 }
 
 #editor {
