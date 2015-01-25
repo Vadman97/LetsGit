@@ -32,7 +32,8 @@ exports.addRoutes = function(app) {
 			var entry;
 			
 			//TODO: Add error handling
-			nodegit.Clone.clone("https://github.com/sathyasom/test.git",
+			//TODO: Add url validation
+			nodegit.Clone.clone(repoURL,
 				pathName, {ignoreCertErrors: 1})
 			  	.done(function() {
 			  		//post to s3
