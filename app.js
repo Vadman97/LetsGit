@@ -9,6 +9,7 @@ var express = require('express');
 var passport = require('passport');
 var AWS = require('aws-sdk');
 var mongoose = require('mongoose');
+var MongoStore = require('connect-mongo')(session);
 var LocalStrategy = require('passport-local').Strategy;
 var bodyParser = require('body-parser');
 var User = require('./models/user');
