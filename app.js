@@ -11,7 +11,7 @@ var AWS = require('aws-sdk');
 var mongoose = require('mongoose');
 var LocalStrategy = require('passport-local').Strategy;
 var bodyParser = require('body-parser');
-var node-validator = require('node-validator');
+var nodeValidator = require('node-validator');
 var User = require('./models/user');
 
 var creds = require('./routes/creds');
