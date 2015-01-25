@@ -63,6 +63,7 @@ exports.addRoutes = function(app) {
 	}));
 
 	app.post('/uploadrepo', function(req, res) {
+		console.log(req.files);
 		if (done==true) {
 			console.log(req.files);
 			res.send("File uploaded.");
