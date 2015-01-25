@@ -23,7 +23,7 @@
         </tr>
         <% for (index in files) { %>
           <tr>
-            <td><a href="#">Example_file.js</a></td>
+            <td><a href="<%= currentPath + '/' + files[index] %>"><%= files[index] %></a></td>
             <td>ipsum</td>
             <td>dolor</td>
             <td>
@@ -32,15 +32,6 @@
             </td>
           </tr>
         <% } %>
-        <tr>
-          <td><a href="#">Example_folder/</a></td>
-          <td>consectetur</td>
-          <td>adipiscing</td>
-          <td>
-            <a href="#" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Rename"><span class="fa fa-pencil fa-lg"></span></a>
-            <a href="#" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><span class="fa fa-trash-o fa-lg"></span></a>
-          </td>
-        </tr>
       </tbody>
     </table>
   </div>
