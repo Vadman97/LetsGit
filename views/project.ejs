@@ -10,29 +10,44 @@
       <thead>
         <tr>
           <th><h4>File name</h4></th>
-          <th><h4>Last Commit</h4></th>
-          <th><h4>Last Updated</h4></th>
+          <th><h4>Last commit</h4></th>
+          <th><h4>Last updated</h4></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Lorem</td>
+          <td colspan="4"><a href="#"><span class="fa fa-level-up">&nbsp;</span>Parent</a></td>
+        </tr>
+        <tr>
+          <td><a href="#">Example_file.js</a></td>
           <td>ipsum</td>
           <td>dolor</td>
           <td>
-            <a href="/file" class="btn btn-info" data-repoID="1">View</a>
+            <a href="#" class="btn btn-warning">Rename</a>
+            <a href="#" class="btn btn-danger">Delete</a>
           </td>
         </tr>
         <tr>
-          <td>amet</td>
+          <td><a href="#">Example_folder/</a></td>
           <td>consectetur</td>
           <td>adipiscing</td>
           <td>
-            <a href="/file" class="btn btn-info" data-repoID="2">View</a>
+            <a href="#" class="btn btn-warning">Rename</a>
+            <a href="#" class="btn btn-danger">Delete</a>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="row">
+    <a href="/uploadRepo" class="btn btn-primary addButton">
+      <span class="glyphicon glyphicon-upload"></span>
+            Upload file
+    </a>
+    <a href="/commitRepo" class="btn btn-primary addButton">
+      <span class="glyphicon glyphicon-file"></span>
+            Create new file
+    </a>
   </div>
 
 </div>
