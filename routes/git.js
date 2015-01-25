@@ -16,7 +16,11 @@ exports.addRoutes = function(app) {
 	app.post('/clone', function(req, res) {
 		var repoURL = req.body.url;
 		var repoName = path.basename(repoURL, '.git');
-		var pathName = "./repos/" + req.user._id + "/" + repoName;		
+		var pathName = "./repos/" + req.user._id + "/" + repoName + "/";		
+
+		console.log(repoURL);
+		console.log(repoName);
+		console.log(pathName);
 					
 		fse.remove(pathName).then(function() {
 			var entry;

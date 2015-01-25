@@ -15,6 +15,8 @@ exports.addRoutes = function(app) {
   			{
   				//pass to ejs file names
   				//no slash at the end of the pathString actually
+          console.log(i);
+          console.log(files[i]);
   				if (fs.statSync(pathString + files[i]).isDirectory())
   				{
   					files[i] = files[i] + '/'; // make the ejs display folders vs files differently
