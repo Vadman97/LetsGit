@@ -56,7 +56,7 @@ exports.addRoutes = function(app) {
                 files[i] = files[i] + '/'; // make the ejs display folders vs files differently
               }
             }
-            renderDashboard('project', {css:["dashboard"],  js:["project, projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id") + '/' + req.params[0], parent: true}, res);
+            renderDashboard('project', {css:["dashboard"],  js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id") + '/' + req.params[0], parent: true}, res);
           });
         } else {
           fs.readFile(pathString, function(err, text){
