@@ -13,6 +13,8 @@ exports.addRoutes = function(app) {
   		fs.readdir(pathString, function(error, files)
   		{
   			//for now, project figures out if directory or file when requesting        
+        if (files == null)
+          return;
         for (var i = 0; i < files.length; i++) 
         {
   				//pass to ejs file names
@@ -24,7 +26,7 @@ exports.addRoutes = function(app) {
           if (files[i].indexOf('.') == 0)
           {
             console.log(i);
-            files.splice(i, 1);
+            files.splice(i, 10);
           }
 
           var stats = fs.statSync(pathString + files[i]);
