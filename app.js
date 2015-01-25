@@ -88,7 +88,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(multer({dest: './repos/'}));
+app.use(multer({dest: './uploads/'}));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 

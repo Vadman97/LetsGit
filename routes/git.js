@@ -49,35 +49,47 @@ exports.addRoutes = function(app) {
 	app.post('/createrepo', function(req, res) {
 
 	});
-	app.use(multer({ dest: './uploads/',
-	 	rename: function (fieldname, filename) {
-	    	return filename+Date.now();
-	  	},
-		onFileUploadStart: function (file) {
-	  		console.log(file.originalname + ' is starting ...')
-		},
-		onFileUploadComplete: function (file) {
-	  		console.log(file.fieldname + ' uploaded to  ' + file.path)
-	  		done=true;
-		}
-	}));
 
 	app.post('/uploadrepo', function(req, res) {
-		console.log(req.files);
-		if (done==true) {
-			console.log(req.files);
-			res.send("File uploaded.");
-		};
+		var file = req.files.file;
+		console.log(file);
 		// res.writeHead(200, { 
   //       'Content-Type': 'text/plain',
   //       'Access-Control-Allow-Origin': '*' // implementation of CORS
 	 //    });
-	 //    var fileName = req.body.file;
+		var filePath = path.resolve(__dirname + "/../" + file.path);
+		console.log("FILE PATH:" + filePath);
+		var outputPath = path.resolve(__dirname + "/../repos/yolo");
+		console.log("SAVE PATH:" + outputPath);
+
+		// var readStream = fs.createReadStream(filePath);
+		// var writeStream = fs.createWriteStream(outputPath);
+
+		// readStream
+		//   .pipe(unzip.Parse())
+		//   .pipe(writeStream)
+
+		fs.createReadStream(filePath).pipe(unzip.Extract({ path: outputPath}));
+
+		// pipe(unzip.Parse())
+	 //  	.on('entry', function (entry) {
+	 //   		var fileName = entry.path;
+	 //   		console.log("FILE NAME IS:" + fileName);
+	 //    	var type = entry.type; // 'Directory' or 'File'
+	 //    	var size = entry.size;
+	    	// if (fileName === "this IS the file I'm looking for") {
+	     //  		entry.pipe(fs.createWriteStream('output/path'));
+		    // } else {
+      // 			entry.autodrain();
+		    // }
+		// });
+
+
+
+	 //    var fileName = req.files[0];
 	 //    fileName = fileName.split('/').lastChild;
 	 //    console.log(fileName);
-	 //    req.on('data', function (chunk) {
-		// 	fs.createReadStream(chunk).pipe(unzip.Extract({ path: __dirname + "../repos/" + req.user._id + "/" }));	    
-		// });
+		// fs.createReadStream(chunk).pipe(unzip.Extract({ path: __dirname + "../repos/" + req.user._id + "/" }));	    
 	});
 
 	app.get('/download/:repoName', function(req, res) {
