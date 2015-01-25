@@ -2,7 +2,7 @@ require('./common');
 
 //Home page
 exports.addRoutes = function(app) {
-	app.get('/', function(req, res){
+	app.get('/', ensureUnauthenticated, function(req, res){
 		renderHome('index', {css:['landing'], page:1}, res);
 		console.log(req.user);
 	});
@@ -13,3 +13,8 @@ exports.addRoutes = function(app) {
 		renderHome('register', {css:['login'], page:3}, res);
   });
 };
+
+function ensureUnauthenticated(req, res, next) {
+  if (!req.isAuthenticated()) { return next(); }
+  res.redirect('/')
+}

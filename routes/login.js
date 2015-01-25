@@ -1,7 +1,7 @@
 var passport = require('passport');
 
 exports.addRoutes = function(app) {
-	app.post('/login', function(req, res, next) {
+	app.post('/login', ensureUnauthenticated, function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
       if (err) return next(err);
       if (!user) {
@@ -15,4 +15,9 @@ exports.addRoutes = function(app) {
       });
     })(req, res, next);
   });
+}
+
+function ensureUnauthenticated(req, res, next) {
+  if (!req.isAuthenticated()) { return next(); }
+  res.redirect('/')
 }
