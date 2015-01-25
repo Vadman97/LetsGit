@@ -1,6 +1,6 @@
 var passport = require('passport'),
     mongoose = require('mongoose'),
-    bcrypt = require('bcrypt');
+    bcrypt = require('bcrypt-nodejs');
 
 var userSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true},

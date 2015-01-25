@@ -7,10 +7,11 @@ var http = require('http');
 var path = require('path');
 var express = require('express');
 var passport = require('passport');
-var AWS = require('aws-sdk'); 
+var AWS = require('aws-sdk');
 var mongoose = require('mongoose');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('./models/user');
+var session = require('express-session'),
 
 var index = require('./routes/index');
 var git_pull = require('./routes/gitPull');
@@ -57,6 +58,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, function(email, passw
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(session({secret: process.env.SECRET}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.favicon());

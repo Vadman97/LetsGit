@@ -1,7 +1,7 @@
 var User = require('../models/user.js');
 
 exports.addRoutes = function(app) {
-  app.post('/signup', function(req, res) {
+  app.post('/signup', function(req, res, next) {
       user = User({email: req.body.email, password: req.body.password});
 
     User.findOne({email: req.body.email}, function(err, existingUser) {
