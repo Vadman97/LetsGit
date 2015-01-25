@@ -1,5 +1,5 @@
 $('#uploadZip .btn').change(function() {
-  $.post('/uploadRepo', $('#uploadZip').serialize(), function(data) {
+  $.post('/uploadrepo', $('#uploadZip').serialize(), function(data) {
     location.reload();
   }, 'json');
   $('label.addButton').html('');
