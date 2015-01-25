@@ -100,10 +100,68 @@
     text-align: center;
     text-shadow: 0 2px 2px rgba(0,0,0,0.5);
   }
+
+  /*
+ * Header
+ */
+.masthead-brand {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+  display: inline-block;
+}
+.masthead-nav > li + li {
+  margin-left: 20px;
+}
+.masthead-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .masthead-brand {
+    float: left;
+  }
+  .masthead-nav {
+    float: right;
+  }
+}
     </style>
   </head>
 
   <body>
+    <div id="fullscreen_bg" class="fullscreen_bg"/>
+    <div class="masthead clearfix">
+        <div class="inner">
+              <h3 class="masthead-brand">LetsGit</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/login">Login</a></li>
+                  <li class="active"><a href="/register">Register</a></li>
+                </ul>
+              </nav>
+        </div>
+    </div>
     
     <div class="container">
   <div class="row">
