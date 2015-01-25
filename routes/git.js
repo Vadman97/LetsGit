@@ -39,8 +39,7 @@ exports.addRoutes = function(app) {
 						userId: req.user._id
 					});
 				testRepo.save();
-				//res.json({repoURL: pathName});
-				res.redirect('/');
+				res.json({code: 0});
 			});					   
 		});
 	});
