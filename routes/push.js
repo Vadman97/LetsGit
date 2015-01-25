@@ -40,9 +40,7 @@ exports.addRoutes = function(app) {
         return push.unpackOk();
       });
     });
-}).done(function() {
-  console.log("Done!");
-});
+})
     });
   });
 }
