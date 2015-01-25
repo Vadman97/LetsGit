@@ -28,7 +28,7 @@ var git = require('./routes/git');
 var app = express();
 var s3 = new AWS.S3();
 
-mongoose.connect('localhost', 'LetsGit');
+mongoose.connect('letsg.it:8001', 'LetsGit');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
