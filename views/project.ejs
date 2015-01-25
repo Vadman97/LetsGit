@@ -29,8 +29,9 @@
             <td>ipsum</td>
             <td>dolor</td>
             <td>
-              <a href="#" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Rename"><span class="fa fa-pencil fa-lg"></span></a>
-              <a href="#" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><span class="fa fa-trash-o fa-lg"></span></a>
+              <a href="#" onclick="replaceForm('<%= ownerID %>', '<%= files[index] %>')" id="replaceButton" class="btn btn-warning" data-dir="" data-toggle="tooltip" data-placement="top" title="Rename"><span class="fa fa-pencil fa-lg"></span></a>
+              <a href="#" onclick="deleteConfirmForm('<%= ownerID %>', '<%= files[index] %>')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><span class="fa fa-trash-o fa-lg"></span></a>
+              <!--<a href="../fileEdit/delete/<%= ownerID + '/' + files[index] %>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><span class="fa fa-trash-o fa-lg"></span></a>-->
             </td>
           </tr>
         <% } %>
@@ -52,3 +53,30 @@
     </a>
   </div>
 </div>
+
+<div class="modal fade" id="renameFile" tabindex="-1" role="dialog">
+  <div class="modal-dialog modalBodySized">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="modal-title" id="rename-title">Rename file: </h3>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <form method="post" role="form" id="renameFileForm" enctype="application/x-www-form-urlencoded" action="/fileEdit" autocomplete="off">
+            <fieldset>
+              <div class="form-group">
+                <label for="url" id="modal-label">New file name (with ext.): </label><br>
+                <input type="text" class="form-control" name="newName" id="newName" placeholder="name.txt" maxlength=100 required></textarea>
+                <input id="upload-submit" class="btn btn-default btn-warning" style="margin-top:1em;" type="submit" value="Submit">
+            </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal fade -->

@@ -25,7 +25,7 @@ exports.addRoutes = function(app) {
   			console.log("Printing project backend stuff");
   			console.log(pathString);
   			console.log(files);
-			renderDashboard('project', {css:["dashboard"], js:["project"], project: data, files: files, currentPath: "/project/" + req.param("id"), parent: false}, res);
+			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.param("id"), files: files, currentPath: "/project/" + req.param("id"), parent: false}, res);
   		});
     });
   });
@@ -47,12 +47,12 @@ exports.addRoutes = function(app) {
                 files[i] = files[i] + '/'; // make the ejs display folders vs files differently
               }
             }
-            renderDashboard('project', {css:["dashboard"], project: data, files: files, currentPath: "/project/" + req.param("id") + '/' + req.params[0], parent: true}, res);
+            renderDashboard('project', {css:["dashboard"],  js:["project, projectButtons"], project: data, ownerID: req.param("id"), files: files, currentPath: "/project/" + req.param("id") + '/' + req.params[0], parent: true}, res);
           });
         } else {
           fs.readFile(pathString, function(err, text){
             if (err) throw err;
-            renderDashboard('file', { js: ['ace/ace', 'ace/ext-modelist', 'file'], data:text, project: data}, res);
+            renderDashboard('file', { js: ['ace/ace', 'ace/ext-modelist', 'file', 'project', 'projectButtons'], data:text, project: data}, res);
           });
         }
       });
