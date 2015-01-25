@@ -18,6 +18,14 @@ function setReadOnly(val) {
   editor.getSession().setUseWorker(!val); // disable warnings
   editor.setShowFoldWidgets(!val); // don't fold code
   $('.ace_scroller').css('background-color', val ? '#eee' : 'inherit');
+  var editBtn = $('.btn-edit');
+  if(val) {
+    editBtn.removeClass('fa-check');
+    editBtn.addClass('fa-pencil-square-o');
+  } else {
+    editBtn.removeClass('fa-pencil-square-o');
+    editBtn.addClass('fa-check');
+  }
 }
 
 function toggleReadOnly() {

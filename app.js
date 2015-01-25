@@ -11,7 +11,7 @@ var AWS = require('aws-sdk');
 var mongoose = require('mongoose');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('./models/user');
-var session = require('express-session'),
+var session = require('express-session');
 
 var index = require('./routes/index');
 var git_pull = require('./routes/gitPull');
