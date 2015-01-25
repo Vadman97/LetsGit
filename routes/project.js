@@ -61,8 +61,8 @@ exports.addRoutes = function(app) {
     Repo.findOne({_id: req.param("id")}, function(error, data){
       if (error || data == null)//user doesnt have repo
         res.redirect("/dashboard");
-      //var pathString = data.path + req.params[0]; // todo ensure this doesn't access weird places, actually no slash at end
-      var pathString = "/project/" + req.param("id") + '/' + req.params[0];
+      var pathString = data.path + req.params[0]; // todo ensure this doesn't access weird places, actually no slash at end
+      //var pathString = "/project/" + req.param("id") + '/' + req.params[0];
       var repoName = data.name;
       console.log("DEEP PATH STRING: " + pathString);
       fs.stat(pathString, function(err, stats) {
