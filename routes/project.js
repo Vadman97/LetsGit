@@ -25,7 +25,7 @@ exports.addRoutes = function(app) {
   			console.log("Printing project backend stuff");
   			console.log(pathString);
   			console.log(files);
-			renderDashboard('project', {css:["dashboard"], project: data, files: files, currentPath: "/project/" + req.param("id"), parent: false}, res);
+			renderDashboard('project', {css:["dashboard"], js:["project"], project: data, files: files, currentPath: "/project/" + req.param("id"), parent: false}, res);
   		});
     });
   });

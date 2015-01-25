@@ -12,6 +12,7 @@ var mongoose = require('mongoose');
 var LocalStrategy = require('passport-local').Strategy;
 var bodyParser = require('body-parser');
 var nodeValidator = require('node-validator');
+var session = require('express-session');
 var User = require('./models/user');
 
 var creds = require('./routes/creds');
