@@ -19,6 +19,7 @@
     "fs-extra": "^0.15.0",
     "mongodb": "~1.4.29",
     "mongoose": "~3.8.21",
+    "multer": "^0.1.7",
     "node-validator": "^0.1.12",
     "nodegit": "^0.2.7",
     "passport": "~0.2.1",
