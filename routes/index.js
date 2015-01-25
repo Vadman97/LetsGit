@@ -10,7 +10,7 @@ exports.addRoutes = function(app) {
     renderHome('login', {css:['login'], page:2, js:['login']}, res);
   });
 	app.get('/register', function(req, res){
-		renderHome('register', {css:['login', 'register'], js:['register'], page:3}, res);
+		renderHome('register', {css:['login'], js:['register'], page:3}, res);
   });
 };
 
