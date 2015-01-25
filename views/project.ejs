@@ -29,8 +29,8 @@
             <td>ipsum</td>
             <td>dolor</td>
             <td>
-              <a href="#" onclick="replaceForm('<%= ownerID %>', '<%= files[index] %>')" id="replaceButton" class="btn btn-warning" data-dir="" data-toggle="tooltip" data-placement="top" title="Rename"><span class="fa fa-pencil fa-lg"></span></a>
-              <a href="#" onclick="deleteConfirmForm('<%= ownerID %>', '<%= files[index] %>')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><span class="fa fa-trash-o fa-lg"></span></a>
+              <a href="#" onclick="replaceForm('<%= project._id %>', '<%= files[index] %>')" id="replaceButton" class="btn btn-warning" data-dir="" data-toggle="tooltip" data-placement="top" title="Rename"><span class="fa fa-pencil fa-lg"></span></a>
+              <a href="#" onclick="deleteConfirmForm('<%= project._id %>', '<%= files[index] %>')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><span class="fa fa-trash-o fa-lg"></span></a>
               <!--<a href="../fileEdit/delete/<%= ownerID + '/' + files[index] %>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><span class="fa fa-trash-o fa-lg"></span></a>-->
             </td>
           </tr>
