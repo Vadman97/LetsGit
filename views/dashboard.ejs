@@ -1,16 +1,17 @@
-<!-- Moxtra SDK -->
-		<script type="text/javascript" src="https://www.moxtra.com/api/js/moxtra-latest.js" id="moxtrajs" data-client-id="ja-9IbGsRNk"></script>
+<!-- Include Moxtra JavaScript Library -->
+        <script type="text/javascript" src="https://www.moxtra.com/api/js/moxtra-latest.js" id="moxtrajs" data-client-id="goPQPReQBZM"></script>
 
         <!-- Include External JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
         <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
-         <!-- Create Signature -->
+
+        <!-- Create Signature -->
         <script type="text/javascript">// <![CDATA[
-            var client_id = "ja-9IbGsRNk";
-            var client_secret = "pOuhjYHZJIQ";
+            var client_id = "goPQPReQBZM";
+            var client_secret = "oh7LOJ-64V0";
             var timestamp = new Date().getTime();
-            var unique_id = "unique_user_id"; //Unique ID of how user is identified in your system
+            var unique_id = "uid3"; //Unique ID of how user is identified in your system
             
             var hash = CryptoJS.HmacSHA256(client_id + unique_id + timestamp, client_secret);
             var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
@@ -23,7 +24,7 @@
             function get_token() {
                 var init_options = {
                     uniqueid: unique_id,
-                    firstname: "John",
+                    firstname: "Adam",
                     lastname: "Doe",
                     timestamp: timestamp,
                     signature: signature,
@@ -44,7 +45,7 @@
         function start_chat (access_token) {            
             var chat_options = {
                 //unique id of the users who will be part of the chat. These users should already exist in Moxtra.
-                unique_id: "unique_user_id_2,unique_user_id_3",  
+                unique_id: "uid2,uid3",  
                 iframe: true,
                 //ID of the HTML tag within which the chat window will show up. Refer https://developer.grouphour.com/moxo/docs-js-sdk/#conversation
                 tagid4iframe: "container",

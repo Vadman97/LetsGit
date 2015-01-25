@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <!-- Include Moxtra JavaScript Library -->
-        <script type="text/javascript" src="https://www.moxtra.com/api/js/moxtra-latest.js" id="moxtrajs" data-client-id="ja-9IbGsRNk"></script>
+        <script type="text/javascript" src="https://www.moxtra.com/api/js/moxtra-latest.js" id="moxtrajs" data-client-id="goPQPReQBZM"></script>
 
         <!-- Include External JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -12,10 +12,10 @@
 
         <!-- Create Signature -->
         <script type="text/javascript">// <![CDATA[
-            var client_id = "ja-9IbGsRNk";
-            var client_secret = "pOuhjYHZJIQ";
+            var client_id = "goPQPReQBZM";
+            var client_secret = "oh7LOJ-64V0";
             var timestamp = new Date().getTime();
-            var unique_id = "unique_user_id_6"; //Unique ID of how user is identified in your system
+            var unique_id = "uid3"; //Unique ID of how user is identified in your system
             
             // HMAC-SHA-256 signature encoded using base64(URL-safe variant, RFC 4648)
             var hash = CryptoJS.HmacSHA256(client_id + unique_id + timestamp, client_secret);
@@ -29,7 +29,7 @@
             function get_token() {
                 var init_options = {
                     uniqueid: unique_id,
-                    firstname: "John",
+                    firstname: "Adam",
                     lastname: "Doe",
                     timestamp: timestamp,
                     signature: signature,
