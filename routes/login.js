@@ -18,6 +18,6 @@ exports.addRoutes = function(app) {
 }
 
 function ensureUnauthenticated(req, res, next) {
-  if (!req.isAuthenticated()) { return next(); }
-  res.redirect('/')
+  if (req.isAuthenticated() == false) { return next(); }
+  res.redirect('/dashboard')
 }
