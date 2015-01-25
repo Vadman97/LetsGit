@@ -24,27 +24,19 @@
 				<thead>
 					<tr>
 						<th><h3><B>Repository Name</B></h3></th>
-						<th><h4>Repository Owner</h4></th>
 						<th><h4>Time of Last Commit</h4></th>
 					</tr>
 				</thead>
 				<tbody>
+					<% for (index in repos){ %>
 					<tr>
-						<td>Lorem</td>
-						<td>ipsum</td>
-						<td>dolor</td>
+						<td><%= repos[index].name %></td>
+						<td><%= repos[index].updatedAt %></td>
 						<td>
-							<a href="/viewRepo" class="btn btn-info" data-repoID="1">View</a>
+							<a href="/project/<%= repos[index]._id %>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><span class="fa fa-eye fa-lg"></span></a>
 						</td>
 					</tr>
-					<tr>
-						<td>amet</td>
-						<td>consectetur</td>
-						<td>adipiscing</td>
-						<td>
-							<a href="/viewRepo" class="btn btn-info" data-repoID="2">View</a>
-						</td>
-					</tr>
+					<% } %>
 				</tbody>
 			</table>
 		</div>
