@@ -25,6 +25,7 @@ var dashboard = require('./routes/dashboard');
 var git = require('./routes/git');
 var logout = require('./routes/logout');
 var test = require('./routes/test');
+var repoDel = require('./routes/repoDel');
 
 var app = express();
 var s3 = new AWS.S3();
@@ -101,6 +102,7 @@ dashboard.addRoutes(app);
 git.addRoutes(app);
 logout.addRoutes(app);
 test.addRoutes(app);
+repoDel.addRoutes(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
