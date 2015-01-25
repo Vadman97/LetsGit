@@ -12,12 +12,9 @@ exports.addRoutes = function(app) {
       var repoName = data.name;
   		fs.readdir(pathString, function(error, files)
   		{
-  			//for now, project figures out if directory or file when requesting        
-        if (files == null)
-          return;
-        var timesRemoved = 0;
-        for (var i = 0; i < files.length; i++) 
-        {
+  			//for now, project figures out if directory or file when requesting
+  			for (i in files)
+  			{
   				//pass to ejs file names
   				//no slash at the end of the pathString actually
           //console.log(i);
@@ -26,31 +23,22 @@ exports.addRoutes = function(app) {
           //console.log(files[i].indexOf('.'));
           if (files[i].indexOf('.') == 0)
           {
-            console.log(i);
-            files.splice(i - timesRemoved, 1);
-            timesRemoved++;
+            //console.log(i);
+            files.splice(i, 1);
           }
 
-          var stats = fs.stat(pathString + files[i], function(err, stats){
-            if (err)
-            {
-              console.log(err);
-              res.redirect('/');
-              return;
-            }
-
-            if (stats.isDirectory())
-            {
-              files[i] = files[i] + '/'; // make the ejs display folders vs files differently
-            }
-            //files[i].stats = stats;
-            //files[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
-          });
+          var stats = fs.statSync(pathString + files[i]);
+  				if (stats.isDirectory())
+  				{
+  					files[i] = files[i] + '/'; // make the ejs display folders vs files differently
+  				}
+          files[i].stats = stats;
+          files[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
   			}
   			//console.log("Printing project backend stuff");
   			//console.log(pathString);
   			//console.log(files);
-  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id") + '/', repoName: repoName, parent: false}, res);
+  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id"), repoName: repoName, parent: false}, res);
   		});
     });
   });
@@ -69,51 +57,25 @@ exports.addRoutes = function(app) {
       if (error || data == null)//user doesnt have repo
         res.redirect("/dashboard");
       var pathString = data.path + req.params[0]; // todo ensure this doesn't access weird places, actually no slash at end
-      // console.log('PATHSTRING: ' + pathString);
       fs.stat(pathString, function(err, stats) {
         if(stats.isDirectory()) {
           fs.readdir(pathString, function(error, files) {
-            if(pathString.charAt(pathString.length-1) != '/') pathString = pathString + '/';
-            console.log(pathString);
             //for now, project figures out if directory or file when requesting
-            var timesRemoved = 0;
-            for (var i = 0; i < files.length; i++) 
-            {
+            for (i in files) {
               //pass to ejs file names
               //no slash at the end of the pathString actually
-              //console.log(i);
-              //console.log(files[i]);
-              //console.log(files[i]);
-              //console.log(files[i].indexOf('.'));
-              if (files[i].indexOf('.') == 0)
-              {
-                console.log(i);
-                files.splice(i - timesRemoved, 1);
-                timesRemoved++;
+              var stats = fs.statSync(pathString + files[i]);
+              if (stats.isDirectory()) {
+                files[i] = files[i] + '/'; // make the ejs display folders vs files differently
               }
-
-              var stats = fs.stat(pathString + files[i], function(err, stats){
-                if (err)
-                {
-                  console.log(err);
-                  res.redirect('/');
-                  return;
-                }
-
-                if (stats.isDirectory())
-                {
-                  files[i] = files[i] + '/'; // make the ejs display folders vs files differently
-                }
-                files[i].stats = stats;
-                files[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
-              });
+              files[i].stats = stats;
             }
             renderDashboard('project', {css:["dashboard"],  js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id") + '/' + req.params[0], parent: true}, res);
           });
         } else {
           fs.readFile(pathString, function(err, text){
             if (err) throw err;
-            renderDashboard('file', { js: ['ace/ace', 'ace/ext-modelist', 'file', 'project', 'projectButtons'], data:text, project: data, currentPath: "/project/" + req.param("id") + '/' + req.params[0], user: req.user, path: req.params[0]}, res);
+            renderDashboard('file', { js: ['ace/ace', 'ace/ext-modelist', 'file', 'project', 'projectButtons'], data:text, project: data, currentPath: "/project/" + req.param("id") + '/' + req.params[0]}, res);
           });
         }
       });
