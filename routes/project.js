@@ -23,7 +23,7 @@ exports.addRoutes = function(app) {
           //console.log(files[i].indexOf('.'));
           if (files[i].indexOf('.') == 0)
           {
-            //console.log(i);
+            console.log(i);
             files.splice(i, 1);
           }
 
