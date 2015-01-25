@@ -29,9 +29,17 @@ exports.addRoutes = function(app) {
   		});
     });
   });
+
+  app.post('/project/:id/*/save', ensureAuthenticated, function(req, res) {
+    Repo.findOne({_id: req.param('id')}, function(error, data){
+      fs.writeFile(data.path + req.params[0], req.body.text, function(err) {
+        if(err) throw err;
+        res.json({code: 0});
+      });
+    });
+  });
   
   app.get('/project/:id/*', ensureAuthenticated, function(req, res){
-    //res.send(req.params[0]);
     Repo.findOne({_id: req.param("id")}, function(error, data){
       if (error || data == null)//user doesnt have repo
         res.redirect("/dashboard");

@@ -26,6 +26,10 @@ function setReadOnly(val) {
   if(val) {
     editBtn.removeClass('fa-check');
     editBtn.addClass('fa-pencil-square-o');
+    // save changed text
+    $.post(document.URL + '/save', {text: editor.getValue()}, function(data) {
+      console.log('saved');
+    });
   } else {
     editBtn.removeClass('fa-pencil-square-o');
     editBtn.addClass('fa-check');
