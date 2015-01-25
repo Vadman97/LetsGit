@@ -6,7 +6,7 @@ exports.addRoutes = function(app) {
 
     User.findOne({email: req.body.email}, function(err, existingUser) {
       if (existingUser) {
-        res.redirect('/signup');
+        return renderHome('register', {page: 3, css: ['login'], error: 'That user already exists.'}, res);
       }
       user.save(function(err) {
         if (err) return next(err);
