@@ -17,6 +17,7 @@
     "mongoose": "~3.8.21",
     "nodegit": "^0.2.7",
     "passport": "~0.2.1",
-    "passport-local": "~1.0.0"
+    "passport-local": "~1.0.0",
+    "validator": "^3.28.0"
   }
 }

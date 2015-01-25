@@ -6,10 +6,11 @@ exports.addRoutes = function(app) {
         });
 
         app.post('/clone', function(req, res) {
-                var repoURL = req.body.repourl;
+                var repoURL = req.body.url;
                 // clone(repoURL, "repos/" + req.user);
                 // console.log(req.user);
-                console.log(repoURL);
+                // console.log(repoURL);
+                console.log(req.body);
                 res.json({repo: repoURL});
         });
 
