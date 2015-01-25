@@ -69,6 +69,7 @@ exports.addRoutes = function(app) {
       if (error || data == null)//user doesnt have repo
         res.redirect("/dashboard");
       var pathString = data.path + req.params[0]; // todo ensure this doesn't access weird places, actually no slash at end
+      // console.log('PATHSTRING: ' + pathString);
       fs.stat(pathString, function(err, stats) {
         if(stats.isDirectory()) {
           fs.readdir(pathString, function(error, files) {
@@ -112,7 +113,7 @@ exports.addRoutes = function(app) {
         } else {
           fs.readFile(pathString, function(err, text){
             if (err) throw err;
-            renderDashboard('file', { js: ['ace/ace', 'ace/ext-modelist', 'file', 'project', 'projectButtons'], data:text, project: data, currentPath: "/project/" + req.param("id") + '/' + req.params[0]}, res);
+            renderDashboard('file', { js: ['ace/ace', 'ace/ext-modelist', 'file', 'project', 'projectButtons'], data:text, project: data, currentPath: "/project/" + req.param("id") + '/' + req.params[0], user: req.user, path: req.params[0]}, res);
           });
         }
       });
