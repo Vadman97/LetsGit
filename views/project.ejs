@@ -38,14 +38,11 @@
     </table>
   </div>
   <div class="row">
-    <a href="/uploadRepo" class="btn btn-primary addButton">
+    <label class="btn btn-primary addButton">
       <span class="glyphicon glyphicon-upload"></span>
-            Upload file
-    </a>
-    <form enctype="multipart/form-data" id="uploadZip">
-      <input type="file">
-      <input type="submit">
-    </form>
+      Upload file
+      <form enctype="multipart/form-data" id="uploadZip" action="/uploadRepo"><input type="file" class="btn btn-primary"></form>
+    </label>
     <a href="/commitRepo" class="btn btn-primary addButton">
       <span class="glyphicon glyphicon-file"></span>
             Create new file
