@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('#uploadZip').on('submit', function(e) {
-    $.post('/uploadRepo', null, function(data, status){
+    $.post('/uploadRepo', new FormData(this), function(data, status){
       //Success handler
       console.log("submited!");
     });
