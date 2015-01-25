@@ -15,6 +15,7 @@ exports.addRoutes = function(app) {
   			//for now, project figures out if directory or file when requesting        
         if (files == null)
           return;
+        var timesRemoved = 0;
         for (var i = 0; i < files.length; i++) 
         {
   				//pass to ejs file names
@@ -26,16 +27,25 @@ exports.addRoutes = function(app) {
           if (files[i].indexOf('.') == 0)
           {
             console.log(i);
-            files.splice(i, 2);
+            files.splice(i - timesRemoved, 1);
+            timesRemoved++;
           }
 
-          var stats = fs.statSync(pathString + files[i]);
-  				if (stats.isDirectory())
-  				{
-  					files[i] = files[i] + '/'; // make the ejs display folders vs files differently
-  				}
-          files[i].stats = stats;
-          files[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
+          var stats = fs.stat(pathString + files[i], function(err, stats){
+            if (err)
+            {
+              console.log(err);
+              res.redirect('/');
+              return;
+            }
+
+            if (stats.isDirectory())
+            {
+              files[i] = files[i] + '/'; // make the ejs display folders vs files differently
+            }
+            files[i].stats = stats;
+            files[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
+          });
   			}
   			//console.log("Printing project backend stuff");
   			//console.log(pathString);
@@ -65,6 +75,7 @@ exports.addRoutes = function(app) {
             if(pathString.charAt(pathString.length-1) != '/') pathString = pathString + '/';
             console.log(pathString);
             //for now, project figures out if directory or file when requesting
+            var timesRemoved = 0;
             for (var i = 0; i < files.length; i++) 
             {
               //pass to ejs file names
@@ -76,15 +87,25 @@ exports.addRoutes = function(app) {
               if (files[i].indexOf('.') == 0)
               {
                 console.log(i);
-                files.splice(i, 2);
+                files.splice(i - timesRemoved, 1);
+                timesRemoved++;
               }
-              //pass to ejs file names
-              //no slash at the end of the pathString actually
-              var stats = fs.statSync(pathString + files[i]);
-              if (stats.isDirectory() && files[i].charAt(files[i].length-1) != '/') {
-                files[i] = files[i] + '/'; // make the ejs display folders vs files differently
-              }
-              files[i].stats = stats;
+
+              var stats = fs.stat(pathString + files[i], function(err, stats){
+                if (err)
+                {
+                  console.log(err);
+                  res.redirect('/');
+                  return;
+                }
+
+                if (stats.isDirectory())
+                {
+                  files[i] = files[i] + '/'; // make the ejs display folders vs files differently
+                }
+                files[i].stats = stats;
+                files[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
+              });
             }
             renderDashboard('project', {css:["dashboard"],  js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id") + '/' + req.params[0], parent: true}, res);
           });
