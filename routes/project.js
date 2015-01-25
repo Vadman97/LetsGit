@@ -19,6 +19,14 @@ exports.addRoutes = function(app) {
   				//no slash at the end of the pathString actually
           //console.log(i);
           //console.log(files[i]);
+          //console.log(files[i]);
+          //console.log(files[i].indexOf('.'));
+          if (files[i].indexOf('.') == 0)
+          {
+            //console.log(i);
+            files.splice(i, 1);
+          }
+
           var stats = fs.statSync(pathString + files[i]);
   				if (stats.isDirectory())
   				{
