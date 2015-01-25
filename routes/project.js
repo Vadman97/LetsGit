@@ -7,38 +7,37 @@ exports.addRoutes = function(app) {
   app.get('/project/:id', ensureAuthenticated, function(req, res){
   	Repo.findOne({_id: req.param("id")}, function(error, data){
   		if (error || data == null || !req.param("id"))//user doesnt have repo
+  		{
+  			console.log("ERROR: " + req.param("id"));
   			res.redirect("/dashboard");
+  		}
   		var pathString = data.path;
-      var repoName = data.name;
+      	var repoName = data.name;
   		fs.readdir(pathString, function(error, files)
   		{
   			//for now, project figures out if directory or file when requesting
-  			for (i in files)
+  			var goodFiles = [];
+  			for(i in files)
   			{
-  				//pass to ejs file names
-  				//no slash at the end of the pathString actually
-          //console.log(i);
-          //console.log(files[i]);
-          //console.log(files[i]);
-          //console.log(files[i].indexOf('.'));
-          if (files[i].indexOf('.') == 0)
-          {
-            //console.log(i);
-            files.splice(i, 1);
-          }
-
-          var stats = fs.statSync(pathString + files[i]);
-  				if (stats.isDirectory())
-  				{
-  					files[i] = files[i] + '/'; // make the ejs display folders vs files differently
-  				}
-          files[i].stats = stats;
-          files[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
+	  			if (files[i].indexOf('.') != 0)
+		        {
+		          goodFiles.push(files[i]);
+		        }
+  			}
+  			for (i in goodFiles)
+  			{
+	         	var stats = fs.statSync(pathString + goodFiles[i]);
+	  			if (stats.isDirectory())
+	  			{
+	  				goodFiles[i] = goodFiles[i] + '/'; // make the ejs display folders vs files differently
+	  			}
+	          	goodFiles[i].stats = stats;
+	         	goodFiles[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
   			}
   			//console.log("Printing project backend stuff");
   			//console.log(pathString);
   			//console.log(files);
-  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id"), repoName: repoName, parent: false}, res);
+  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: goodFiles, currentPath: "/project/" + req.param("id"), repoName: repoName, parent: false}, res);
   		});
     });
   });
@@ -57,21 +56,51 @@ exports.addRoutes = function(app) {
       if (error || data == null)//user doesnt have repo
         res.redirect("/dashboard");
       var pathString = data.path + req.params[0]; // todo ensure this doesn't access weird places, actually no slash at end
+      var repoName = data.name;
       fs.stat(pathString, function(err, stats) {
         if(stats.isDirectory()) {
-          fs.readdir(pathString, function(error, files) {
-            //for now, project figures out if directory or file when requesting
-            for (i in files) {
-              //pass to ejs file names
-              //no slash at the end of the pathString actually
-              var stats = fs.statSync(pathString + files[i]);
-              if (stats.isDirectory()) {
-                files[i] = files[i] + '/'; // make the ejs display folders vs files differently
-              }
-              files[i].stats = stats;
-            }
-            renderDashboard('project', {css:["dashboard"],  js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id") + '/' + req.params[0], parent: true}, res);
-          });
+
+        	fs.readdir(pathString, function(error, files)
+	  		{
+	  			//for now, project figures out if directory or file when requesting
+	  			var goodFiles = [];
+	  			for(i in files)
+	  			{
+		  			if (files[i].indexOf('.') != 0)
+			        {
+			          goodFiles.push(files[i]);
+			        }
+	  			}
+	  			for (i in goodFiles)
+	  			{
+		         	var stats = fs.statSync(pathString + goodFiles[i]);
+		  			if (stats.isDirectory())
+		  			{
+		  				goodFiles[i] = goodFiles[i] + '/'; // make the ejs display folders vs files differently
+		  			}
+		          	goodFiles[i].stats = stats;
+		         	goodFiles[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
+	  			}
+	  			//console.log("Printing project backend stuff");
+	  			//console.log(pathString);
+	  			//console.log(files);
+	  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: goodFiles, currentPath: "/project/" + req.param("id"), repoName: repoName, parent: false}, res);
+	  		});
+
+         	/*fs.readdir(pathString, function(error, files) {
+	            //for now, project figures out if directory or file when requesting
+	            for (i in files) {
+	              //pass to ejs file names
+	              //no slash at the end of the pathString actually
+	              var stats = fs.statSync(pathString + files[i]);
+	              if (stats.isDirectory()) {
+	                files[i] = files[i] + '/'; // make the ejs display folders vs files differently
+	              }
+	              files[i].stats = stats;
+	            }
+            	renderDashboard('project', {css:["dashboard"],  js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id") + '/' + req.params[0], parent: true}, res);
+         	});*/
+
         } else {
           fs.readFile(pathString, function(err, text){
             if (err) throw err;
