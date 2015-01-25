@@ -60,6 +60,8 @@ exports.addRoutes = function(app) {
       fs.stat(pathString, function(err, stats) {
         if(stats.isDirectory()) {
           fs.readdir(pathString, function(error, files) {
+            if(pathString.charAt(pathString.length-1) != '/') pathString = pathString + '/';
+            console.log(pathString);
             //for now, project figures out if directory or file when requesting
             for (i in files) {
               //pass to ejs file names

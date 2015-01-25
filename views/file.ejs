@@ -5,7 +5,7 @@
   folders.splice(-1, 1);
 
   for(var i=0; i<folders.length; i++) {
-    folders[i] = '<a href="#">' + folders[i] + '</a>';
+    folders[i] = '<a href="/project/' + project._id + '/' + folders[i] + '/">' + folders[i] + '</a>';
   }
   folders[0] = '<a href="/project/' + project._id + '">/</a>';
   folders[folders.length] = fileName;

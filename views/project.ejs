@@ -7,14 +7,13 @@
   folders.splice(-1, 1);
 
   for(var i=0; i<folders.length-1; i++) {
-    folders[i] = '<a href="#">' + folders[i] + '</a>';
+    folders[i] = '<a href="/project/' + project._id + '/' + folders[i] + '/">' + folders[i] + '</a>';
   }
   folders[0] = '<a href="/project/' + project._id + '">/</a>';
 
   if(parent) {
 %>
   <div class="jumbotron breadcrumbs">
-    <!--<a href="#">first</a> > <a href="#">second</a> > current_folder-->
     <%- folders.join(' > '); %>
   </div>
 <% } %>
