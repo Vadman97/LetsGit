@@ -59,6 +59,8 @@ exports.addRoutes = function(app) {
       })
       .done(function(commitId) {
         console.log("New Commit: ", commitId);
+        data.changed = false;
+        data.save();
         res.redirect("/project/" + data._id);
       });
     });

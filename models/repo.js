@@ -7,7 +7,8 @@ var repoSchema = mongoose.Schema({
   	remoteURL: { type: String, required: true},
  	createdAt: { type: Date, required: true},
  	updatedAt: { type: Date, required: true},
- 	userId: { type: mongoose.Schema.Types.ObjectId, required: true}
+ 	userId: { type: mongoose.Schema.Types.ObjectId, required: true},
+  changed: { type: Boolean, required: false}
 });
 
 module.exports = mongoose.model('Repo', repoSchema);

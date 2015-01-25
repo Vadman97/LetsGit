@@ -43,7 +43,7 @@ exports.addRoutes = function(app) {
   			//console.log("Printing project backend stuff");
   			//console.log(pathString);
   			//console.log(files);
-  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: goodFiles, mts: modTimes, currentPath: "/project/" + req.param("id"), repoName: repoName, parent: false}, res);
+  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: goodFiles, mts: modTimes, currentPath: "/project/" + req.param("id") + '/', repoName: repoName, parent: false}, res);
   		});
     });
   });
@@ -52,6 +52,8 @@ exports.addRoutes = function(app) {
     Repo.findOne({_id: req.param('id')}, function(error, data){
       fs.writeFile(data.path + req.params[0], req.body.text, function(err) {
         if(err) throw err;
+        data.changed = true;
+        data.save();
         res.json({code: 0});
       });
     });
@@ -60,7 +62,7 @@ exports.addRoutes = function(app) {
   app.get('/project/:id/*', ensureAuthenticated, function(req, res){
     Repo.findOne({_id: req.param("id")}, function(error, data){
       if (error || data == null)//user doesnt have repo
-        res.redirect("/dashboard");
+        res.redirect("/dashboard"); 
       var pathString = data.path + req.params[0]; // todo ensure this doesn't access weird places, actually no slash at end
       //var pathString = "/project/" + req.param("id") + '/' + req.params[0];
       var repoName = data.name;
@@ -124,7 +126,7 @@ exports.addRoutes = function(app) {
         } else {
           fs.readFile(pathString, function(err, text){
             if (err) throw err;
-            renderDashboard('file', { js: ['ace/ace', 'ace/ext-modelist', 'file', 'project', 'projectButtons'], data:text, project: data, currentPath: "/project/" + req.param("id") + '/' + req.params[0]}, res);
+            renderDashboard('file', { js: ['ace/ace', 'ace/ext-modelist', 'file', 'project', 'projectButtons'], data:text, project: data, currentPath: "/project/" + req.param("id") + '/' + req.params[0], user: req.user, path: req.params[0]}, res);
           });
         }
       });

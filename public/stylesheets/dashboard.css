@@ -53,3 +53,6 @@
   top: 50%;
   transform: translateY(-50%);
 }
+h2 .fa {
+  float: right;
+}
