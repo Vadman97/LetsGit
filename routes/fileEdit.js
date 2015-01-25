@@ -31,10 +31,30 @@ exports.addRoutes = function(app) {
   		});
 		
 	});
-	app.get('/fileEdit/delete/*', ensureAuthenticated, function(req, res)
+	app.post('/fileEdit/delete/*', ensureAuthenticated, function(req, res)
 	{
-		console.log("Deleting");
-		res.redirect('/project/' + req.params[0].split('/')[0]);
+		Repo.findOne({_id: req.params[0].split('/')[0]}, function(error, data)
+		{
+	  		if (error || data == null || !req.params[0].split('/')[0])//user doesnt have repo
+	  		{
+	  			console.log(error);
+	  			console.log(req.params[0].split('/')[0]);
+	  			console.log(data.userId);
+	  			console.log(data);
+	  			res.redirect("/dashboard");
+	  		}
+
+	  		console.log("Deleting!");
+	  		var repoName = data.name;
+
+	  		fs.unlink("./repos/" + data.userId + "/" + repoName + "/" + req.params[0].split('/')[1], function(err){
+	  			if (err)
+					console.log(err);
+	  		});
+			//res.redirect('/');
+			//console.log('/project/' + req.params[0].split('/')[0]);
+			res.redirect('/project/' + req.params[0].split('/')[0]);
+  		});
 	});
 };
 
