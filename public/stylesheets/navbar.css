@@ -34,3 +34,7 @@ body {
 input[type="file"] {
   display: none;
 }
+
+#edit-img img {
+  max-width: 100%;
+}

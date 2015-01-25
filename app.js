@@ -92,6 +92,7 @@ app.use(express.methodOverride());
 app.use(multer({dest: './uploads/'}));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'repos')));
 
 // development only
 if ('development' == app.get('env')) {

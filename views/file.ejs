@@ -17,8 +17,13 @@
 <!-- Main component for a primary marketing message or call to action -->
 <div class="jumbotron">
 
-  <span class="fa fa-pencil-square-o fa-lg btn-edit"></span>
-
-  <div id="editor"><%= data %></div>
+  <% var splitt = fileName.split('.');
+     var ext = splitt[splitt.length-1];
+     if(ext == 'png' || ext == 'jpg' || ext == 'jpeg' || ext == 'gif') { %>
+    <div id="edit-img"><img src="/<%= user._id %>/<%= project.name %>/<%= path %>" /></div>
+   <% } else { %>
+    <span class="fa fa-pencil-square-o fa-lg btn-edit"></span>
+    <div id="editor"><%= data %></div>
+  <% } %>
 
 </div>
