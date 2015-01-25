@@ -1,7 +1,11 @@
 var editor = ace.edit("editor");
 
 var readOnly = true;
-setReadOnly(readOnly);
+editor.setReadOnly(readOnly);
+editor.setHighlightActiveLine(!readOnly); // don't highlight active line
+editor.getSession().setUseWorker(!readOnly); // disable warnings
+editor.setShowFoldWidgets(!readOnly); // don't fold code
+$('.ace_scroller').css('background-color', readOnly ? '#eee' : 'inherit');
 
 editor.setTheme("ace/theme/clouds");
 editor.setAutoScrollEditorIntoView(true);
