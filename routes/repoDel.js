@@ -8,7 +8,8 @@ exports.addRoutes = function(app) {
 	    	if (error)
 	    		throw error;
 	    }).remove().exec();
-	    res.redirect('/');
+	    res.status(200).end();
+	    // res.redirect('/');
 	});
 };
 
