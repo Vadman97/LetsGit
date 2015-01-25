@@ -5,10 +5,18 @@
 				<h1>Your cloned repositories</h1>
 			</div>
 			<div class="col-md-3">
-				<a href="/cloneRepo" class="btn btn-primary addButton">
-					<span class="glyphicon glyphicon-plus"></span>
-	                Add a new repository (Clone)
-				</a>
+				<div class="row">
+					<a href="/cloneRepo" class="btn btn-primary addButton">
+						<span class="glyphicon glyphicon-plus"></span>
+		                Add a new repository (Clone)
+					</a>
+				</div>
+				<div class="row">
+					<a href="/createRepo" class="btn btn-primary">
+						<span class="glyphicon glyphicon-file"></span>
+		                Create a new repository
+					</a>
+				</div>
 			</div>
 		</div>
 		<div class="table-responsive well">
@@ -26,7 +34,7 @@
 						<td>ipsum</td>
 						<td>dolor</td>
 						<td>
-							<a href="/viewRepo" class="btn btn-info">View</a>
+							<a href="/viewRepo" class="btn btn-info" data-repoID="1">View</a>
 						</td>
 					</tr>
 					<tr>
@@ -34,7 +42,7 @@
 						<td>consectetur</td>
 						<td>adipiscing</td>
 						<td>
-							<a href="/viewRepo" class="btn btn-info">View</a>
+							<a href="/viewRepo" class="btn btn-info" data-repoID="2">View</a>
 						</td>
 					</tr>
 				</tbody>
