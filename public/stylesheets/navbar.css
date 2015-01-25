@@ -7,7 +7,26 @@ body {
   margin-bottom: 20px;
 }
 
+.jumbotron {
+  padding: 0 !important;
+  padding-bottom: 14px !important;
+}
+
 .breadcrumbs {
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding: 14px 60px !important;
+}
+
+#editor {
+  margin: 0 60px 24px 60px;
+}
+
+.btn-edit {
+  margin: 10px;
+  color: #777;
+  display: inline-block;
+}
+
+.btn-edit:hover {
+  color: #333;
+  cursor: pointer;
 }

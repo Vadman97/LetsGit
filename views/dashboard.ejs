@@ -1,58 +1,71 @@
-<div class="container-fluid">
-	<div class="row title">
-		<div class="col-md-10">
-			<h1>Your cloned repositories</h1>
+<div class="jumbotron">
+	<div class="container dashboardContainer">
+		<div class="row title">
+			<div class="col-md-9">
+				<h1>Your cloned repositories</h1>
+			</div>
+			<div class="col-md-3">
+				<div class="row">
+					<a href="/cloneRepo" class="btn btn-primary addButton">
+						<span class="glyphicon glyphicon-plus"></span>
+		                Add a new repository (Clone)
+					</a>
+				</div>
+				<div class="row">
+					<a href="/createRepo" class="btn btn-primary">
+						<span class="glyphicon glyphicon-file"></span>
+		                Create a new repository
+					</a>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-2">
-			<a href="/cloneRepo" class="btn btn-sm btn-primary addButton">
-				<span class="glyphicon glyphicon-plus"></span>
-                Add a new repository (Clone)
-			</a>
-			<a href="/cloneRepo" class="btn btn-sm btn-primary addButton">
+		<div class="table-responsive well">
+			<table class="table table-striped table-hover repoTable">
+				<thead>
+					<tr>
+						<th><h3><B>Repository Name</B></h3></th>
+						<th><h4>Repository Owner</h4></th>
+						<th><h4>Time of Last Commit</h4></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Lorem</td>
+						<td>ipsum</td>
+						<td>dolor</td>
+						<td>
+							<a href="/viewRepo" class="btn btn-info" data-repoID="1">View</a>
+						</td>
+					</tr>
+					<tr>
+						<td>amet</td>
+						<td>consectetur</td>
+						<td>adipiscing</td>
+						<td>
+							<a href="/viewRepo" class="btn btn-info" data-repoID="2">View</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="row">
+			<a href="/downloadRepo" class="btn btn-primary addButton">
 				<span class="glyphicon glyphicon-download"></span>
-                Download repository
+	            Download repository
 			</a>
-			<a href="/cloneRepo" class="btn btn-sm btn-primary addButton">
+			<a href="/uploadRepo" class="btn btn-primary addButton">
 				<span class="glyphicon glyphicon-upload"></span>
-                Upload repository
+	            Upload repository
 			</a>
-			<a href="/cloneRepo" class="btn btn-sm btn-success addButton">
+			<a href="/commitRepo" class="btn btn-success addButton">
 				<span class="glyphicon glyphicon-ok"></span>
-                Commit your changes
+	            Commit your changes
 			</a>
-			<a href="/cloneRepo" class="btn btn-sm btn-warning addButton">
+			<a href="/pushRepo" class="btn btn-warning addButton">
 				<span class="glyphicon glyphicon-refresh"></span>
-                Submit (push) your changes
+	            Submit (push) your changes
 			</a>
 		</div>
-	</div>
-	<div class="table-responsive well">
-		<table class="table table-striped table-hover repoTable">
-			<thead>
-				<tr>
-					<th><h3><B>Repository Name</B></h3></th>
-					<th><h4>Repository Owner</h4></th>
-					<th><h4>Time of Last Commit</h4></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Lorem</td>
-					<td>ipsum</td>
-					<td>dolor</td>
-					<td>
-						<a href="/viewRepo" class="btn btn-info">View</a>
-					</td>
-				</tr>
-				<tr>
-					<td>amet</td>
-					<td>consectetur</td>
-					<td>adipiscing</td>
-					<td>
-						<a href="/viewRepo" class="btn btn-info">View</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
 	</div>
 </div>

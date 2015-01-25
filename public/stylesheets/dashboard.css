@@ -8,11 +8,15 @@ a {
 }
 
 .addButton{
-	margin-top:3.5em;
+	margin-top:1.5em;
+	margin-bottom:0.5em;
 }
 .title{
 	margin-bottom:1em;
 }
 .repoTable{
 	margin-bottom:0;
+}
+.dashboardContainer{
+	padding:2em 2em 2em 2em;
 }
