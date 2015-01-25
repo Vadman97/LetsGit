@@ -1,3 +1,8 @@
+.alert {
+    text-shadow: none;
+    text-align: left;
+}
+
 body {
     background-color:#232323
 }
