@@ -1,5 +1,12 @@
 <form class="form-signin" action="/signup" method="post">
     <h1 class="form-signin-heading text-muted">Register</h1>
+    <% if(typeof error != 'undefined') { %>
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <%= error %>
+      </div>
+    <% } %>
     <input autofocus="" class="form-control" placeholder="Username" required="" type="text" name="username">
     <input class="form-control" placeholder="Email address" required="" type="text" name="email">
     <input class="form-control" placeholder="Password" required="" type="password" name="password">
