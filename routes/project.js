@@ -27,7 +27,33 @@ exports.addRoutes = function(app) {
   		});
     });
   });
-  //todo with subfolder
+  
+  app.get('/project/:id/*', ensureAuthenticated, function(req, res){
+    //res.send(req.params[0]);
+    Repo.findOne({_id: req.param("id")}, function(error, data){
+      if (error || data == null)//user doesnt have repo
+        res.redirect("/dashboard");
+      var pathString = data.path + req.params[0]; // todo ensure this doesn't access weird places, actually no slash at end
+      fs.stat(pathString, function(err, stats) {
+        if(stats.isDirectory()) {
+          fs.readdir(pathString, function(error, files) {
+            //for now, project figures out if directory or file when requesting
+            for (i in files) {
+              //pass to ejs file names
+              //no slash at the end of the pathString actually
+              if (fs.statSync(pathString + files[i]).isDirectory()) {
+                files[i] = files[i] + '/'; // make the ejs display folders vs files differently
+              }
+            }
+            renderDashboard('project', {css:["dashboard"], project: data, files: files, currentPath: "/project/" + req.param("id") + '/' + req.params[0], parent: true}, res);
+          });
+        } else {
+          renderDashboard('file', { js: ['ace/ace', 'file'] }, res);
+        }
+      });
+    });
+  });
+
 };
 
 function ensureAuthenticated(req, res, next) {
