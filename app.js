@@ -19,7 +19,6 @@ var creds = require('./routes/creds');
 var index = require('./routes/index');
 var git_pull = require('./routes/gitPull');
 var project = require('./routes/project');
-var file = require('./routes/file');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
 var dashboard = require('./routes/dashboard');
@@ -96,7 +95,6 @@ if ('development' == app.get('env')) {
 index.addRoutes(app);
 git_pull.addRoutes(app);
 project.addRoutes(app);
-file.addRoutes(app);
 login.addRoutes(app);
 signup.addRoutes(app);
 dashboard.addRoutes(app);
