@@ -13,6 +13,7 @@ var git_pull = require('./routes/gitPull');
 var project = require('./routes/project');
 var file = require('./routes/file');
 var login = require('./routes/login');
+var git = require('./routes/git')
 
 var app = express();
 
