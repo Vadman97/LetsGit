@@ -30,3 +30,5 @@ node_modules
 routes/creds.js
 repos/
 uploads/
+downloads/
+downloads/*
