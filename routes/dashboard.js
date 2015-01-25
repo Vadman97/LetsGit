@@ -2,7 +2,7 @@ var Repo = require('../models/repo.js');
 require('./common');
 
 exports.addRoutes = function(app) {
-	app.get('/dashboard', function(req, res)
+	app.get('/dashboard', ensureAuthenticated, function(req, res)
 	{
 		/*var testRepo = new Repo({
 			name: 'test1', 
@@ -20,3 +20,8 @@ exports.addRoutes = function(app) {
 		console.log(req.user);
 	});
 };
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/')
+}
