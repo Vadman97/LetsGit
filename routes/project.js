@@ -11,26 +11,19 @@ exports.addRoutes = function(app) {
   		fs.readdir(pathString, function(error, files)
   		{
   			//for now, project figures out if directory or file when requesting
-  			/*
-  			var links = [];
   			for (i in files)
   			{
-  				//pass to ejs file names, links (different if file or folder
+  				//pass to ejs file names
   				//no slash at the end of the pathString actually
-  				//make the ejs display folders vs files differently
   				if (fs.statSync(pathString + files[i]).isDirectory())
   				{
-  					links[i] = "/project/" + req.param("id") + "/" + files[i];
+  					files[i] = files[i] + '/'; // make the ejs display folders vs files differently
   				}
-  				else
-  				{
-  					links[i] = "/project/" + req.param("id") + "/" + files[i];
-  				}
-  			}*/
+  			}
   			console.log("Printing project backend stuff");
   			console.log(pathString);
   			console.log(files);
-			renderDashboard('project', {css:["dashboard"], project: data, files: files, currentPath: "/project/" + req.param("id")}, res);
+			renderDashboard('project', {css:["dashboard"], project: data, files: files, currentPath: "/project/" + req.param("id"), parent: false}, res);
   		});
     });
   });
