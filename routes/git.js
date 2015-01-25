@@ -11,6 +11,13 @@ var unzip = require('unzip');
 var multer  = require('multer');
 var done = false;
 
+function run_cmd(cmd) {
+    var sys = require('sys')
+	var exec = require('child_process').exec;
+	function puts(error, stdout, stderr) { sys.puts(stdout) }
+	exec(cmd, puts);
+}
+
 exports.addRoutes = function(app) {
 	app.get('/app', function(req, res) {
 		res.render('index', { body: 'This is LetsGit' });
@@ -36,6 +43,7 @@ exports.addRoutes = function(app) {
 					var testRepo = new Repo({
 						name: repoName, 
 						path: pathName, 
+						remoteURL: repoURL, 
 						createdAt: new Date().toJSON(),
 						updatedAt: new Date().toJSON(),
 						userId: req.user._id
@@ -92,6 +100,22 @@ exports.addRoutes = function(app) {
 		});
 
 		res.sendfile(path.resolve(destinationURL));
+
+	});
+
+	app.post('/push', function(req, res) {
+		var repoURL = req.body.url;
+		var repoName = path.basename(repoURL, '.git');
+		var pathName = "./repos/" + req.user._id + "/" + repoName + "/";
+		/*run_cmd("git add -A").then(function() {
+			run_cmd('git commit -a -m "lelele test message"').then(function() {
+				run_cmd('git push');
+			});
+		});*/
+		//console.log("le push");
+		//run_cmd("git push");
+		//run_cmd('git commit -a -m "lelele test message"');
+		//run_cmd('git push');
 
 	});
 };

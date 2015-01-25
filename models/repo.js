@@ -4,6 +4,7 @@ var passport = require('passport'),
 var repoSchema = mongoose.Schema({
   	name: { type: String, required: true},
   	path: { type: String, required: true},
+  	remoteURL: {type: String, required: true},
  	createdAt: { type: Date, required: true},
  	updatedAt: { type: Date, required: true},
  	userId: { type: mongoose.Schema.Types.ObjectId, required: true}
