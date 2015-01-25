@@ -26,7 +26,7 @@ exports.addRoutes = function(app) {
 
 		Repo.find({userId: req.user._id}, function(error, data){
 	    	//console.log(data);
-			renderDashboard('dashboard', {css:["dashboard"], repos:data}, res);
+			renderDashboard('dashboard', {css:["dashboard"], js:['dashboard'], repos:data}, res);
 	    });
 		//console.log(req.user);
 	});
