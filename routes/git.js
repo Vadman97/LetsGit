@@ -1,3 +1,5 @@
+var Repo = require('../models/repo.js');
+
 var nodegit = require('nodegit');
 var promisify = require("promisify-node");
 var validator = require('validator');
@@ -24,18 +26,25 @@ exports.addRoutes = function(app) {
 	app.post('/clone', function(req, res) {
 		var repoURL = req.body.url;
 		var repoName = path.basename(repoURL, '.git');
-		var pathName = "/repos/" + req.user._id + "/" + repoName;
-		console.log(pathName);		
+		var pathName = __dirname + "/../repos/" + req.user._id + "/" + repoName;		
 					
 		fse.remove(pathName).then(function() {
 			var entry;
 			
 			//TODO: Add error handling
-			nodegit.Clone.clone("https://github.com/sathyasom/test.git",
+			//TODO: Add url validation
+			nodegit.Clone.clone(repoURL,
 				pathName, {ignoreCertErrors: 1})
 			  	.done(function() {
 			  		//post to s3
-
+				var testRepo = new Repo({
+					name: 'test' + i, 
+					path: 'www.google.com/' + Math.random(), 
+					createdAt: new Date().toJSON(),
+					updatedAt: new Date().toJSON(),
+					userId: req.user._id
+				});
+				testRepo.save();
 				res.json({repoURL: pathName});
 			});					   
 		});
