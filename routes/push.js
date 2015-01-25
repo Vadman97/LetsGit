@@ -12,6 +12,7 @@ exports.addRoutes = function(app) {
         nodegit.Remote.remove(repository, "origin");
         return nodegit.Remote.create(repository, "origin",
               data.remoteURL);
+      })
       .then(function(remote) {
         remote.connect(nodegit.Enums.DIRECTION.PUSH);
 
