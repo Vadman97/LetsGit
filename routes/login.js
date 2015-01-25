@@ -6,7 +6,7 @@ exports.addRoutes = function(app) {
       if (err) return next(err);
       if (!user) {
         console.log("Logging in failed");
-        return renderHome('login', {page: 2, css: ['login'], error: 'Invalid username or password.'}, res);
+        return renderHome('login', {page: 2, css: ['login'], error: 'Invalid username or password.', js: ['login']}, res);
       }
       req.logIn(user, function(err) {
         if (err) return next(err);

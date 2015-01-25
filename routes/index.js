@@ -3,14 +3,14 @@ require('./common');
 //Home page
 exports.addRoutes = function(app) {
 	app.get('/', ensureUnauthenticated, function(req, res){
-		renderHome('index', {css:['landing'], page:1}, res);
+		renderHome('index', {css:['landing'], page:1, js:['landing']}, res);
 		console.log(req.user);
 	});
 	app.get('/login', function(req, res){
-    renderHome('login', {css:['login'], page:2}, res);
+    renderHome('login', {css:['login'], page:2, js:['login']}, res);
   });
 	app.get('/register', function(req, res){
-		renderHome('register', {css:['login', 'register'], page:3}, res);
+		renderHome('register', {css:['login'], js:['register'], page:3}, res);
   });
 };
 

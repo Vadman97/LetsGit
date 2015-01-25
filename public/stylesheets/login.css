@@ -8,17 +8,16 @@ body {
   height: 100%;
 }
 html {
-  background: url('/img/code.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
 }
 body {
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
-  background-color: rgba(0,0,0,.7);
+  background-color: rgba(0,0,0,1);
 }
 
 .btn {
