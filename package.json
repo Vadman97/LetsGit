@@ -14,7 +14,7 @@
     "connect-mongo": "^0.7.0",
     "easy-zip": "0.0.4",
     "ejs": "*",
-    "express": "^3.8.1",
+    "express": "^3.19.1",
     "express-session": "^1.10.1",
     "fs-extra": "^0.15.0",
     "mongodb": "~1.4.29",

@@ -30,3 +30,14 @@ body {
   color: #333;
   cursor: pointer;
 }
+
+input[type="file"] {
+  display: none;
+}
+
+.fa-refresh {
+  margin-right: 15px;
+  margin-left: 4px;
+  position: relative;
+  top: 7px;
+}
