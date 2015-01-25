@@ -7,6 +7,7 @@ var fse = promisify(require("fs-extra"));
 var fs = require('fs');
 var path = require('path');
 var EasyZip = require('easy-zip').EasyZip;
+var unzip = require('unzip');
 
 exports.addRoutes = function(app) {
 	app.get('/app', function(req, res) {
@@ -26,8 +27,7 @@ exports.addRoutes = function(app) {
 			nodegit.Clone.clone(repoURL,
 				pathName, {ignoreCertErrors: 1})
 			  	.done(function() {
-			  		//post to s3
-				var testRepo = new Repo({
+					var testRepo = new Repo({
 					name: 'test' + i, 
 					path: 'www.google.com/' + Math.random(), 
 					createdAt: new Date().toJSON(),
@@ -42,6 +42,19 @@ exports.addRoutes = function(app) {
 
 	app.post('/createrepo', function(req, res) {
 
+	});
+
+	app.post('/uploadrepo', function(req, res) {
+		res.writeHead(200, { 
+        'Content-Type': 'text/plain',
+        'Access-Control-Allow-Origin': '*' // implementation of CORS
+	    });
+	    var fileName = req.body.fileName;
+	    fileName = fileName.split('/').lastChild;
+	    console.log(fileName);
+	    req.on('data', function (chunk) {
+			fs.createReadStream(chunk).pipe(unzip.Extract({ path: __dirname + "../repos/" + req.user._id + "/" }));	    
+		});
 	});
 
 	app.get('/download/:repoName', function(req, res) {
