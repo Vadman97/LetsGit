@@ -1,5 +1,18 @@
+<%
+  var folders = currentPath.split('/');
+  var fileName = folders[folders.length - 1];
+  folders.splice(0, 2);
+  folders.splice(-1, 1);
+
+  for(var i=0; i<folders.length-1; i++) {
+    folders[i] = '<a href="#">' + folders[i] + '</a>';
+  }
+  folders[0] = '<a href="/project/' + project._id + '">/</a>';
+  folders[folders.length-1] = fileName;
+%>
 <div class="jumbotron breadcrumbs">
-  <a href="#">first</a> > <a href="#">second</a> > <a href="#">current_folder</a> > current_file.js
+  <!--<a href="#">first</a> > <a href="#">second</a> > current_folder-->
+  <%- folders.join(' > '); %>
 </div>
 
 <!-- Main component for a primary marketing message or call to action -->
