@@ -12,9 +12,9 @@ exports.addRoutes = function(app) {
       var repoName = data.name;
   		fs.readdir(pathString, function(error, files)
   		{
-  			//for now, project figures out if directory or file when requesting
-  			for (i in files)
-  			{
+  			//for now, project figures out if directory or file when requesting        
+        for (var i = 0; i < files.length; i++) 
+        {
   				//pass to ejs file names
   				//no slash at the end of the pathString actually
           //console.log(i);

@@ -36,6 +36,7 @@ exports.addRoutes = function(app) {
 					var testRepo = new Repo({
 						name: repoName, 
 						path: pathName, 
+						remoteURL: repoURL,
 						createdAt: new Date().toJSON(),
 						updatedAt: new Date().toJSON(),
 						userId: req.user._id
