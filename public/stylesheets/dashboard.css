@@ -20,3 +20,6 @@ a {
 .dashboardContainer{
 	padding:2em 2em 2em 2em;
 }
+.modalBodySized{
+	min-width: 90%;
+}
