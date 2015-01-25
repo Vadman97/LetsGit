@@ -8,6 +8,8 @@ var fs = require('fs');
 var path = require('path');
 var EasyZip = require('easy-zip').EasyZip;
 var unzip = require('unzip');
+var multer  = require('multer');
+var done = false;
 
 exports.addRoutes = function(app) {
 	app.get('/app', function(req, res) {
@@ -47,18 +49,34 @@ exports.addRoutes = function(app) {
 	app.post('/createrepo', function(req, res) {
 
 	});
+	app.use(multer({ dest: './uploads/',
+	 	rename: function (fieldname, filename) {
+	    	return filename+Date.now();
+	  	},
+		onFileUploadStart: function (file) {
+	  		console.log(file.originalname + ' is starting ...')
+		},
+		onFileUploadComplete: function (file) {
+	  		console.log(file.fieldname + ' uploaded to  ' + file.path)
+	  		done=true;
+		}
+	}));
 
 	app.post('/uploadrepo', function(req, res) {
-		res.writeHead(200, { 
-        'Content-Type': 'text/plain',
-        'Access-Control-Allow-Origin': '*' // implementation of CORS
-	    });
-	    var fileName = req.body.file;
-	    fileName = fileName.split('/').lastChild;
-	    console.log(fileName);
-	    req.on('data', function (chunk) {
-			fs.createReadStream(chunk).pipe(unzip.Extract({ path: __dirname + "../repos/" + req.user._id + "/" }));	    
-		});
+		if (done==true) {
+			console.log(req.files);
+			res.send("File uploaded.");
+		};
+		// res.writeHead(200, { 
+  //       'Content-Type': 'text/plain',
+  //       'Access-Control-Allow-Origin': '*' // implementation of CORS
+	 //    });
+	 //    var fileName = req.body.file;
+	 //    fileName = fileName.split('/').lastChild;
+	 //    console.log(fileName);
+	 //    req.on('data', function (chunk) {
+		// 	fs.createReadStream(chunk).pipe(unzip.Extract({ path: __dirname + "../repos/" + req.user._id + "/" }));	    
+		// });
 	});
 
 	app.get('/download/:repoName', function(req, res) {
