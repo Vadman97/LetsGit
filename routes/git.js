@@ -6,17 +6,7 @@ var validator = require('validator');
 var fse = promisify(require("fs-extra"));
 var fs = require('fs');
 var path = require('path');
-
-var creds = require('./creds');
-
-// var AWS = require('aws-sdk');
-// AWS.config.region = 'us-west-1';
-// AWS.config.update({
-// 	accessKeyId: creds.AWS_ACCESS_KEY,
-// 	secretAccessKey: creds.AWS_SECRET_KEY
-// });
-
-// var s3 = new AWS.S3();
+var EasyZip = require('easy-zip').EasyZip;
 
 exports.addRoutes = function(app) {
 	app.get('/app', function(req, res) {
@@ -51,6 +41,21 @@ exports.addRoutes = function(app) {
 	});
 
 	app.post('/createrepo', function(req, res) {
+
+	});
+
+	app.get('/download/:repoName', function(req, res) {
+		var repoName = req.params.repoName;
+		var projectDirectory = __dirname + "/../repos/" + req.user._id + "/" + repoName;
+		var destinationURL = __dirname + "/../downloads/" + req.user._id + "-" + repoName + ".zip"
+
+		var zip = new EasyZip();
+		
+		zip.zipFolder(projectDirectory, function() {
+    		zip.writeToFile(destinationURL);
+		});
+
+		res.sendfile(path.resolve(destinationURL));
 
 	});
 };
