@@ -10,6 +10,7 @@ var passport = require('passport');
 var AWS = require('aws-sdk');
 var mongoose = require('mongoose');
 var LocalStrategy = require('passport-local').Strategy;
+var bodyParser = require('body-parser');
 var User = require('./models/user');
 var session = require('express-session');
 
@@ -60,6 +61,9 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, function(email, passw
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(session({secret: creds.session_secret}));
 app.use(passport.initialize());
 app.use(passport.session());
