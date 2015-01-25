@@ -5,7 +5,7 @@ var fs = require('fs');
 exports.addRoutes = function(app) {
   app.get('/project/:id', ensureAuthenticated, function(req, res){
   	Repo.findOne({_id: req.param("id")}, function(error, data){
-  		if (error || data == null)//user doesnt have repo
+  		if (error || data == null || !req.param("id"))//user doesnt have repo
   			res.redirect("/dashboard");
   		var pathString = data.path;
   		fs.readdir(pathString, function(error, files)
@@ -15,17 +15,17 @@ exports.addRoutes = function(app) {
   			{
   				//pass to ejs file names
   				//no slash at the end of the pathString actually
-          console.log(i);
-          console.log(files[i]);
+          //console.log(i);
+          //console.log(files[i]);
   				if (fs.statSync(pathString + files[i]).isDirectory())
   				{
   					files[i] = files[i] + '/'; // make the ejs display folders vs files differently
   				}
   			}
-  			console.log("Printing project backend stuff");
-  			console.log(pathString);
-  			console.log(files);
-			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.param("id"), files: files, currentPath: "/project/" + req.param("id"), parent: false}, res);
+  			//console.log("Printing project backend stuff");
+  			//console.log(pathString);
+  			//console.log(files);
+			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id"), parent: false}, res);
   		});
     });
   });
@@ -47,7 +47,7 @@ exports.addRoutes = function(app) {
                 files[i] = files[i] + '/'; // make the ejs display folders vs files differently
               }
             }
-            renderDashboard('project', {css:["dashboard"],  js:["project, projectButtons"], project: data, ownerID: req.param("id"), files: files, currentPath: "/project/" + req.param("id") + '/' + req.params[0], parent: true}, res);
+            renderDashboard('project', {css:["dashboard"],  js:["project, projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id") + '/' + req.params[0], parent: true}, res);
           });
         } else {
           fs.readFile(pathString, function(err, text){
