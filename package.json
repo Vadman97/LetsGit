@@ -14,11 +14,13 @@
     "ejs": "*",
     "express": "3.8",
     "express-session": "^1.10.1",
+    "fs-extra": "^0.15.0",
     "mongodb": "~1.4.29",
     "mongoose": "~3.8.21",
     "nodegit": "^0.2.7",
     "passport": "~0.2.1",
     "passport-local": "~1.0.0",
+    "promisify-node": "^0.1.5",
     "validator": "^3.28.0"
   }
 }
