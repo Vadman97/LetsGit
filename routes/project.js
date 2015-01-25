@@ -48,7 +48,7 @@ exports.addRoutes = function(app) {
             renderDashboard('project', {css:["dashboard"], project: data, files: files, currentPath: "/project/" + req.param("id") + '/' + req.params[0], parent: true}, res);
           });
         } else {
-          fs.readFile(filename, function(err, text){
+          fs.readFile(pathString, function(err, text){
             if (err) throw err;
             renderDashboard('file', { js: ['ace/ace', 'file'], data:text, project: data}, res);
           });
