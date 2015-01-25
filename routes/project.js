@@ -17,6 +17,7 @@ exports.addRoutes = function(app) {
   		{
   			//for now, project figures out if directory or file when requesting
   			var goodFiles = [];
+  			var modTimes = [];
   			for(i in files)
   			{
 	  			if (files[i].indexOf('.') != 0)
@@ -32,12 +33,17 @@ exports.addRoutes = function(app) {
 	  				goodFiles[i] = goodFiles[i] + '/'; // make the ejs display folders vs files differently
 	  			}
 	          	goodFiles[i].stats = stats;
+	          	modTimes.push(strftime('%b %e, %Y at %l:%M', stats.mtime));
 	         	goodFiles[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
+	         	console.log(goodFiles[i]);
+	         	console.log(goodFiles[i].lm); //this
+	         	console.log(stats.mtime);
+	         	console.log(strftime('%b %e, %Y at %l:%M', stats.mtime));
   			}
   			//console.log("Printing project backend stuff");
   			//console.log(pathString);
   			//console.log(files);
-  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: goodFiles, currentPath: "/project/" + req.param("id"), repoName: repoName, parent: false}, res);
+  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: goodFiles, mts: modTimes, currentPath: "/project/" + req.param("id"), repoName: repoName, parent: false}, res);
   		});
     });
   });
@@ -66,6 +72,7 @@ exports.addRoutes = function(app) {
 	  		{
 	  			//for now, project figures out if directory or file when requesting
 	  			var goodFiles = [];
+	  			var modTimes = [];
 	  			for(i in files)
 	  			{
 		  			if (files[i].indexOf('.') != 0)
@@ -81,12 +88,17 @@ exports.addRoutes = function(app) {
 		  				goodFiles[i] = goodFiles[i] + '/'; // make the ejs display folders vs files differently
 		  			}
 		          	goodFiles[i].stats = stats;
+		          	modTimes.push(strftime('%b %e, %Y at %l:%M', stats.mtime));
 		         	goodFiles[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
+		         	console.log(goodFiles[i]);
+		         	console.log(goodFiles[i].lm); //this
+		         	console.log(stats.mtime);
+		         	console.log(strftime('%b %e, %Y at %l:%M', stats.mtime));
 	  			}
 	  			//console.log("Printing project backend stuff");
 	  			//console.log(pathString);
 	  			//console.log(files);
-	  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: goodFiles, currentPath: "/project/" + req.param("id") + '/' + req.params[0], repoName: repoName, parent: false}, res);
+	  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: goodFiles, mts: modTimes, currentPath: "/project/" + req.param("id"), repoName: repoName, parent: false}, res);
 	  		});
 
          	/*fs.readdir(pathString, function(error, files) {

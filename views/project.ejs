@@ -26,7 +26,6 @@
       <thead>
         <tr>
           <th><h4>File name</h4></th>
-          <th><h4>Last commit</h4></th>
           <th><h4>Last updated</h4></th>
         </tr>
       </thead>
@@ -39,8 +38,7 @@
         <% for (index in files) { %>
           <tr>
             <td><a href="<%= currentPath + '/' + files[index] %>"><%= files[index] %></a></td>
-            <td><%= project.createdAt %></td>
-            <td><%= files[i].lm %></td>
+            <td><%= mts[index] %></td>
             <td>
               <a href="#" onclick="replaceForm('<%= project._id %>', '<%= files[index] %>')" id="replaceButton" class="btn btn-warning" data-dir="" data-toggle="tooltip" data-placement="top" title="Rename"><span class="fa fa-pencil fa-lg"></span></a>
               <a href="#" onclick="deleteConfirmForm('<%= project._id %>', '<%= files[index] %>')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><span class="fa fa-trash-o fa-lg"></span></a>

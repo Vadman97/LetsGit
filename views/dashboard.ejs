@@ -108,7 +108,7 @@
 						<td><a href="/project/<%= repos[index]._id %>"><%= repos[index].name %></a></td>
 						<td><%= repos[index].updatedAtt %></td>
 						<td>
-							<a href="#" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Download"><span class="fa fa-download fa-lg"></span></a>
+							<a href="/download/<%= repos[index].name %>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Download"><span class="fa fa-download fa-lg"></span></a>
 							<a href="#" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Upload"><span class="fa fa-upload fa-lg"></span></a>
 							<a href="#" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Sync"><span class="fa fa-refresh fa-lg"></span></a>
 							<a href="/repoDel/<%= repos[index]._id %>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><span class="fa fa-trash-o fa-lg"></span></a>
