@@ -65,7 +65,12 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(session({secret: creds.session_secret}));
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: creds.session_secret,
+  store: new MongoStore({url: "mongodb://letsg.it:8001/LetsGit", autoReconnect: true})
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.favicon());
