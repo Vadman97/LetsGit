@@ -14,6 +14,7 @@ var bodyParser = require('body-parser');
 var nodeValidator = require('node-validator');
 var session = require('express-session');
 var User = require('./models/user');
+var multer = require('multer');
 
 var creds = require('./routes/creds');
 
@@ -87,6 +88,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(multer({dest: './repos/'}));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
