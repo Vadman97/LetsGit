@@ -43,8 +43,8 @@ exports.addRoutes = function(app) {
             {
               files[i] = files[i] + '/'; // make the ejs display folders vs files differently
             }
-            files[i].stats = stats;
-            files[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
+            //files[i].stats = stats;
+            //files[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
           });
   			}
   			//console.log("Printing project backend stuff");
