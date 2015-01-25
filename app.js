@@ -9,7 +9,6 @@ var express = require('express');
 var passport = require('passport');
 var AWS = require('aws-sdk');
 var mongoose = require('mongoose');
-var MongoStore = require('connect-mongo')(session);
 var LocalStrategy = require('passport-local').Strategy;
 var bodyParser = require('body-parser');
 var User = require('./models/user');
@@ -66,12 +65,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(session({
-  resave: true,
-  saveUninitialized: true,
-  secret: creds.session_secret,
-  store: new MongoStore({url: "mongodb://letsg.it:8001/LetsGit", autoReconnect: true})
-}));
+app.use(session({secret: creds.session_secret}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.favicon());
