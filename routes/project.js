@@ -1,6 +1,7 @@
 require('./common');
 var Repo = require('../models/repo.js');
 var fs = require('fs');
+var strftime = require('strftime');
 
 exports.addRoutes = function(app) {
   app.get('/project/:id', ensureAuthenticated, function(req, res){
@@ -18,15 +19,26 @@ exports.addRoutes = function(app) {
   				//no slash at the end of the pathString actually
           //console.log(i);
           //console.log(files[i]);
-  				if (fs.statSync(pathString + files[i]).isDirectory())
+          //console.log(files[i]);
+          //console.log(files[i].indexOf('.'));
+          if (files[i].indexOf('.') == 0)
+          {
+            //console.log(i);
+            files.splice(i, 1);
+          }
+
+          var stats = fs.statSync(pathString + files[i]);
+  				if (stats.isDirectory())
   				{
   					files[i] = files[i] + '/'; // make the ejs display folders vs files differently
   				}
+          files[i].stats = stats;
+          files[i].lm = strftime('%b %e, %Y at %l:%M', stats.mtime);
   			}
   			//console.log("Printing project backend stuff");
   			//console.log(pathString);
   			//console.log(files);
-			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id"), repoName: repoName, parent: false}, res);
+  			renderDashboard('project', {css:["dashboard"], js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id"), repoName: repoName, parent: false}, res);
   		});
     });
   });
@@ -52,9 +64,11 @@ exports.addRoutes = function(app) {
             for (i in files) {
               //pass to ejs file names
               //no slash at the end of the pathString actually
-              if (fs.statSync(pathString + files[i]).isDirectory()) {
+              var stats = fs.statSync(pathString + files[i]);
+              if (stats.isDirectory()) {
                 files[i] = files[i] + '/'; // make the ejs display folders vs files differently
               }
+              files[i].stats = stats;
             }
             renderDashboard('project', {css:["dashboard"],  js:["project", "projectButtons"], project: data, ownerID: req.user._id, files: files, currentPath: "/project/" + req.param("id") + '/' + req.params[0], parent: true}, res);
           });

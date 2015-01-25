@@ -19,6 +19,7 @@
 					<tr>
 						<th><h3><B>Repository Name</B></h3></th>
 						<th><h4>Time of Last Commit</h4></th>
+						<th>Functions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,30 +29,16 @@
 						<td><%= repos[index].updatedAtt %></td>
 						<td>
 							<a href="/project/<%= repos[index]._id %>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><span class="fa fa-eye fa-lg"></span></a>
-						</td>
-						<td>
-						<td>
+							<a href="#" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Download"><span class="fa fa-download fa-lg"></span></a>
+							<a href="#" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Upload"><span class="fa fa-upload fa-lg"></span></a>
+							<a href="#" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Commit"><span class="fa fa-check fa-lg"></span></a>
+							<a href="#" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Push"><span class="fa fa-refresh fa-lg"></span></a>
 							<a href="/repoDel/<%= repos[index]._id %>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><span class="fa fa-trash-o fa-lg"></span></a>
 						</td>
 					</tr>
 					<% } %>
 				</tbody>
 			</table>
-		</div>
-
-		<div class="row">
-			<a href="/downloadRepo" class="addButton2">
-				<span class="fa fa-download fa-2x" data-toggle="tooltip" data-placement="bottom" title="Download repository"></span>
-			</a>
-			<a href="/uploadRepo" class="addButton2">
-				<span class="fa fa-upload fa-2x" data-toggle="tooltip" data-placement="bottom" title="Upload repository"></span>
-			</a>
-			<a href="/commitRepo" class="addButton2">
-				<span class="fa fa-check fa-2x" data-toggle="tooltip" data-placement="bottom" title="Commit your changes"></span>
-			</a>
-			<a href="/pushRepo" class="addButton2">
-				<span class="fa fa-refresh fa-2x" data-toggle="tooltip" data-placement="bottom" title="Submit (push) your changes"></span>
-			</a>
 		</div>
 	</div>
 </div>
