@@ -64,21 +64,24 @@ exports.addRoutes = function(app) {
 		fse.remove(outputPath).then(function() {
 			var zip = new AdmZip(filePath);
 			zip.extractAllTo(outputPath, true);
+			res.redirect(req.get('referer'));	//Semi-hackish way of refreshing page
 		});
 	});
 
 	app.get('/download/:repoName', function(req, res) {
 		var repoName = req.params.repoName;
-		var projectDirectory = __dirname + "/../repos/" + req.user._id + "/" + repoName;
-		var destinationURL = __dirname + "/../downloads/" + req.user._id + "-" + repoName + ".zip"
+		var projectDirectory = path.resolve(__dirname + "/../repos/" + req.user._id + "/" + repoName);
+		var destinationURL = path.resolve(__dirname + "/../downloads/" + req.user._id + "-" + repoName + ".zip");
+		console.log("project" + projectDirectory);
+		console.log("destination" + destinationURL);
 
-		var zip = new EasyZip();
-		
-		zip.zipFolder(projectDirectory, function() {
-    		zip.writeToFile(destinationURL);
+		fse.remove(destinationURL).then(function() {
+			var zip = new AdmZip();
+			zip.addLocalFolder(projectDirectory);
+			zip.writeZip(destinationURL);
+
+			res.sendfile(destinationURL);
 		});
-
-		res.sendfile(path.resolve(destinationURL));
 
 	});
 };
