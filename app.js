@@ -70,6 +70,16 @@ app.use(bodyParser.urlencoded({
 app.use(session({secret: creds.session_secret}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function (req, res, next) {
+  if (req.method == 'POST' && req.url == '/login' ) {
+    if ( req.body.rememberme ) {
+      req.session.cookie.maxAge = 2592000000; // 30*24*60*60*1000 Rememeber 'me' for 30 days
+    } else {
+      req.session.cookie.expires = false;
+    }
+  }
+  next();
+});
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
