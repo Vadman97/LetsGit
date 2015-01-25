@@ -53,10 +53,7 @@ exports.addRoutes = function(app) {
 	app.post('/uploadrepo', function(req, res) {
 		var file = req.files.file;
 		console.log(file);
-		// res.writeHead(200, { 
-  //       'Content-Type': 'text/plain',
-  //       'Access-Control-Allow-Origin': '*' // implementation of CORS
-	 //    });
+		
 		var filePath = path.resolve(__dirname + "/../" + file.path);
 		console.log("FILE PATH:" + filePath);
 		var outputPath = path.resolve(__dirname + "/../extracted");
@@ -64,38 +61,6 @@ exports.addRoutes = function(app) {
 
 		var zip = new AdmZip(filePath);
 		zip.extractAllTo(outputPath, true);
-		// var readStream = fs.createReadStream(filePath);
-		// var writeStream = fs.createWriteStream(outputPath);
-
-		// readStream
-		//   .pipe(unzip.Parse())
-		//   .pipe(writeStream)
-
-		// fs.createReadStream(filePath).pipe(unzip.Extract({ path: outputPath}));
-
-		// fs.createReadStream(filePath).pipe(unzip.Parse())
-	 //  	.on('entry', function (entry, error) {
-	 //  		if (error) {
-	 //  			console.log(error);
-	 //  		};
-	 //   		var fileName = entry.path;
-	 //   		console.log("FILE NAME IS:" + fileName);
-	 //   		entry.autodrain();
-	    	// var type = entry.type; // 'Directory' or 'File'
-	    	// var size = entry.size;
-	    	// if (fileName === "this IS the file I'm looking for") {
-	     //  		entry.pipe(fs.createWriteStream('output/path'));
-		    // } else {
-      // 			entry.autodrain();
-		    // }
-		// });
-
-
-
-	 //    var fileName = req.files[0];
-	 //    fileName = fileName.split('/').lastChild;
-	 //    console.log(fileName);
-		// fs.createReadStream(chunk).pipe(unzip.Extract({ path: __dirname + "../repos/" + req.user._id + "/" }));	    
 	});
 
 	app.get('/download/:repoName', function(req, res) {
