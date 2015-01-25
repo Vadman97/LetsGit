@@ -1,3 +1,7 @@
+.addButton{
+  margin-top:1.5em;
+  margin-bottom:0.5em;
+}
 .title{
 	margin-bottom:1em;
 }
@@ -26,16 +30,25 @@
 }
 .row .fa:hover {
   color: #333;
+  cursor: pointer;
 }
 .row.title h1 {
   display: inline-block;
 }
-.addButton {
+.addButton2 {
   margin-left: 30px;
   position: relative;
   top: 25px;
 }
-.addButton span {
+.addButton2 span {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.addButton3 {
+  margin-left: 30px;
+}
+.addButton3 span {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
