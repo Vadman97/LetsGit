@@ -42,6 +42,9 @@
       <span class="glyphicon glyphicon-upload"></span>
             Upload file
     </a>
+    <form enctype="multipart/form-data" id="uploadZip">
+      <input type="file">
+    </form>
     <a href="/commitRepo" class="btn btn-primary addButton">
       <span class="glyphicon glyphicon-file"></span>
             Create new file
@@ -49,3 +52,18 @@
   </div>
 
 </div>
+
+<script>
+  $(document).ready(function() {
+      $('#uploadZip').on('submit', function(e) {
+        $.ajax( {
+          url: '/uploadRepo'
+          type: 'POST',
+          data: new FormData(this),
+          processData: false,
+          contentType: false
+        });
+        e.preventDefault();
+      });
+  });
+</script>
