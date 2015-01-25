@@ -9,12 +9,13 @@ exports.addRoutes = function(app) {
     var repo = Repo.findOne({_id: req.param('id')}, function(error, data) {
       nodegit.Repository.open(path.resolve(__dirname + '/../' + data.path))
       .then(function(repository) {
-  return nodegit.Remote.load(repository, "origin")
-    .then(function(remote) {
-      console.log(remote);
-      remote.connect(nodegit.Enums.DIRECTION.PUSH);
+        nodegit.Remote.remove(repository, "origin");
+        return nodegit.Remote.create(repository, "origin",
+              data.remoteURL);
+      .then(function(remote) {
+        remote.connect(nodegit.Enums.DIRECTION.PUSH);
 
-      var push;
+        var push;
 
       // We need to set the auth on the remote, not the push object
       remote.setCallbacks({
