@@ -57,6 +57,7 @@ exports.addRoutes = function(app) {
         res.redirect("/dashboard");
       var pathString = data.path + req.params[0]; // todo ensure this doesn't access weird places, actually no slash at end
       var repoName = data.name;
+      console.log("DEEP PATH STRING: " + pathString);
       fs.stat(pathString, function(err, stats) {
         if(stats.isDirectory()) {
 
