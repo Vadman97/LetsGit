@@ -79,10 +79,10 @@ be able to add repository names to a list
 			</div>
 			<div class="modal-body">      
 				<div class="container-fluid">
-					<form method="post" role="form" id="addRepositoryForm" enctype="multipart/form-data" action="/addRepo" autocomplete="off">
+					<form method="post" role="form" id="addRepositoryForm" enctype="multipart/form-data" action="/clone" autocomplete="off">
 						<fieldset>
 							<div class="form-group">
-                                <label for="url">Repository URL:</label><br>
+                                <label for="repourl">Repository URL:</label><br>
                                 <input type="text" class="form-control" form="addRepositoryForm" name="url" placeholder="URL" maxlength=100 required></textarea>
                                 <input id="upload-submit" class="btn btn-default" type="submit" value="Submit"> 
                             </div>

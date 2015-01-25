@@ -9,7 +9,7 @@ exports.addRoutes = function(app) {
       }
       req.logIn(user, function(err) {
         if (err) return next(err);
-        res.redirect('/');
+        res.redirect('/dashboard');
       });
     })(req, res, next);
   });
