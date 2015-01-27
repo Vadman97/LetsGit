@@ -55,12 +55,12 @@ exports.addRoutes = function(app) {
 		var file = req.files.file;
 		var repoName = req.params.repoName;
 
-		console.log(file);
-
 		var filePath = path.resolve(__dirname + "/../" + file.path);
 		console.log("FILE PATH:" + filePath);
 		var outputPath = path.resolve(__dirname + "/../repos/" + req.user._id + "/" + repoName);
 		console.log("SAVE PATH:" + outputPath);
+
+		if(filePath.split('.').pop());
 		
 		fse.remove(outputPath).then(function() {
 			var zip = new AdmZip(filePath);
