@@ -1,7 +1,11 @@
 {
   "name": "LetsGit",
   "version": "0.0.1",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Vadman97/LetsGit.git"
+  },
+  "license": "MIT",
   "scripts": {
     "start": "node app.js"
   },
